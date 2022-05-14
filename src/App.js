@@ -7,6 +7,7 @@ import { Napaka } from './components/error';
 import MojaPiva from './components/mojaPiva';
 import ONas from './components/oNas';
 import Iskanje from './components/iskanje';
+import Login from './components/login';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path='/iskanje' element={<Iskanje />}></Route>
         <Route path='/mojepive' element={<MojaPiva />}></Route>
         <Route path='/onas' element={<ONas />}></Route>
+        <Route path='/login' element={<Login />}></Route>
         <Route path='*' element={<Napaka />}></Route>
       </Routes>
 
