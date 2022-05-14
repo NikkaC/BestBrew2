@@ -9,7 +9,7 @@ import { createRoot } from "react-dom/client";
 
 function App() {
   return (
-    <BrowserRouter>
+    
  
 
       <Routes>
@@ -17,7 +17,7 @@ function App() {
         <Route path='/' element={<PrvaStran></PrvaStran>}></Route>
       </Routes>
 
-  </BrowserRouter>
+  
     )
 }
 
