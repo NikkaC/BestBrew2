@@ -4,10 +4,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import NavB from './components/nav';
 import { BrowserRouter,Routes, Route,} from "react-router-dom";
 import PrvaStran from './components/prvastran';
-import { render } from "react-dom";
+
+import { createRoot } from "react-dom/client";
 
 function App() {
-  return render (
+  return (
     <BrowserRouter>
  
 
