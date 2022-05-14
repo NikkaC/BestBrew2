@@ -3,9 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function PrvaStran() {
   return (
-
-<p>Začetek</p>
+    <p>Začetek</p>
   );
 }
 
-export default Navbar;
+export default PrvaStran;
