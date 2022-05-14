@@ -8,4 +8,4 @@ function PrvaStran() {
   );
 }
 
-export default Navbar;
+export default PrvaStran;
