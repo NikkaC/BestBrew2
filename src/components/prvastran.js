@@ -1,10 +1,11 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App() {
+function PrvaStran() {
   return (
 
+<p>Začetek</p>
   );
 }
 
-export default App;
+export default Navbar;
