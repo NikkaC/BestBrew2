@@ -1,19 +1,21 @@
-CREATE DATABASE praktikum;
+DROP TABLE IF EXISTS "piva";
+DROP TABLE IF EXISTS "uporabniki";
+DROP TABLE IF EXISTS "seznam_priljubljenih";
 
 CREATE TABLE "piva" (
   "id_piva" SERIAL PRIMARY KEY,
   "ime" varchar,
   "vrsta_piva" varchar,
   "piovovarna" varchar,
-  "barva" varchar,
+  "barva" varchar, 
   "pena" varchar,
   "okus" varchar,
   "vonj" varchar,
   "slika" varchar,
-  "crtna_koda" longtext,
-  "koordinata_x" longtext,
-  "koordinata_y" longtext
-);
+  "crtna_koda" int,
+  "koordinata_x" int,
+  "koordinata_y" int
+ );
 
 CREATE TABLE "uporabniki" (
   "id_uporabniki" SERIAL PRIMARY KEY,
@@ -28,9 +30,7 @@ CREATE TABLE "seznam_priljubljenih" (
   "fk_uporabnik" int, 
   "fk_pivo" int 
 );
+--POTREBNE FORGIN KEY POVEZAVA, INSERTI....
 
-ALTER TABLE "seznam_priljubljenih" ADD FOREIGN KEY ("fk_uporabnik") REFERENCES "uporabniki" ("seznam_priljubljenih_fk");
-
-ALTER TABLE "piva" ADD FOREIGN KEY ("id_piva") REFERENCES "seznam_priljubljenih" ("fk_pivo");
 
 
