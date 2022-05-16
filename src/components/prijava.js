@@ -1,5 +1,5 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import{ Container, Card, Row, Col } from 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/onas.css';
 
 function Prijava() {

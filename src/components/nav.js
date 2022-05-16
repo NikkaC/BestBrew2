@@ -2,6 +2,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
+import { signInWithGoogle, signOutWithGoogle } from "./GoogleAuth/firebase";
+import { LogIn, LogOut } from './GoogleAuth/logInOut';
+import { ProfilePic } from './GoogleAuth/userData';
 
 function NavB() {
   return (
@@ -19,7 +22,9 @@ function NavB() {
         </Nav>
         <Nav>
 
-          <Nav.Link href="/login">Login</Nav.Link>
+          {localStorage.getItem("login")
+            ? <LogOut />
+            : <LogIn />}
         </Nav>
       </Container>
     </Navbar>

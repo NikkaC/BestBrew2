@@ -5,9 +5,9 @@ import {Routes, Route,} from "react-router-dom";
 import PrvaStran from './components/prvastran';
 import { Napaka } from './components/error';
 import MojaPiva from './components/mojaPiva';
-import Onas from './components/onas';
+import ONas from './components/onas';
 import Iskanje from './components/iskanje';
-import Login from './components/login';
+
 
 
 function App() {
@@ -20,8 +20,8 @@ function App() {
         <Route path='/' element={<PrvaStran />}></Route>
         <Route path='/iskanje' element={<Iskanje />}></Route>
         <Route path='/mojepive' element={<MojaPiva />}></Route>
-        <Route path='/onas' element={<Onas />}></Route>
-        <Route path='/login' element={<Login />}></Route>
+        <Route path='/onas' element={<ONas />}></Route>
+
         <Route path='*' element={<Napaka />}></Route>
       </Routes>
 

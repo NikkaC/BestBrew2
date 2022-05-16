@@ -20,7 +20,7 @@ const proConfig = {
 //-------------Spremenljivka-----------------
 const pool = new Pool(proConfig);
 
-var sqlPoizvedba = fs.readFileSync(__dirname +'/database.sql').toString();
+var sqlPoizvedba = fs.readFileSync(__dirname +'/baza.sql').toString();
 
 //---Testna POVEZAVA in IZVRŠITEV database.sql----
 
