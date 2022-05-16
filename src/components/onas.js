@@ -1,7 +1,7 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 
-function Onas() {
+function ONas() {
     return (
         <>
             <Card>
@@ -13,4 +13,4 @@ function Onas() {
     )
 }
 
-export default Onas;
+export default ONas;
