@@ -5,7 +5,7 @@ import {Routes, Route,} from "react-router-dom";
 import PrvaStran from './components/prvastran';
 import { Napaka } from './components/error';
 import MojaPiva from './components/mojaPiva';
-import ONas from './components/onas';
+import ONas from './components/oNas';
 import Iskanje from './components/iskanje';
 
 
