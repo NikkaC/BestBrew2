@@ -7,7 +7,7 @@ DROP TABLE IF EXISTS pivovarna;
 
 CREATE TABLE pivo (
 	idPivo serial PRIMARY KEY NOT NULL,
-    tk_pivovarna INT NOT NULL,
+    tk_pivovarna INT,
     naziv VARCHAR(45),
     alkohol VARCHAR(45),
     vrsta VARCHAR(45),
@@ -21,9 +21,7 @@ CREATE TABLE uporabnik (
 	idUporabnik serial PRIMARY KEY NOT NULL,
     ime VARCHAR(100),
     priimek VARCHAR(100),
-    email VARCHAR(100),
-    geslo VARCHAR(100),
-    datum_rojstva DATE
+    email VARCHAR(100)
 );
 
 
@@ -61,17 +59,17 @@ ALTER TABLE ocena ADD CONSTRAINT tk_ocena_pivo FOREIGN KEY (tk_pivo) REFERENCES 
 ALTER TABLE pivo ADD CONSTRAINT tk_pivo_pivovarna FOREIGN KEY (tk_pivovarna) REFERENCES pivovarna(idPivovarna) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 
-INSERT INTO uporabnik (ime, priimek, email, geslo, datum_rojstva)
-VALUES  ('Jože', 'Gorišek', 'joze.gorisek@gmail.com', 'gorisek5', '1975-05-01'),
-        ('Buba', 'Corelli', 'imperia@gmail.com', 'bacamruze', '1989-09-22'),
-        ('Jala', 'Brat', 'jala.brat@gmail.com', 'partijam', '1986-10-16'),
-        ('Alfi', 'Nipič', 'alfi.nipic@gmail.com', 'pohorje', '1944-09-17'),
-        ('Saša', 'Lendero', 'sasa.lendero@gmail.com', 'mandoline', '1973-08-06'),
-        ('Robert', 'Pešut', 'robert.pesut@gmail.com', 'magnifico', '1965-12-01'),
-        ('Tomaž', 'Mihelič', 'tomaz.mihelic@gmail.com', 'toplovodar', '1979-06-21'),
-        ('Jan', 'Plestenjak', 'jan.plestenjak@gmail.com', 'soba102', '1973-03-27'),
-        ('Stevie', 'Wonder', 'stevie.wonder@gmail.com', 'tjema', '1950-05-13'),
-        ('Fredi', 'Miler', 'fredi.miler@gmail.com', 'obrv', '1967-05-22');
+INSERT INTO uporabnik (ime, priimek, email)
+VALUES  ('Jože', 'Gorišek', 'joze.gorisek@gmail.com'),
+        ('Buba', 'Corelli', 'imperia@gmail.com'),
+        ('Jala', 'Brat', 'jala.brat@gmail.com'),
+        ('Alfi', 'Nipič', 'alfi.nipic@gmail.com'),
+        ('Saša', 'Lendero', 'sasa.lendero@gmail.com'),
+        ('Robert', 'Pešut', 'robert.pesut@gmail.com'),
+        ('Tomaž', 'Mihelič', 'tomaz.mihelic@gmail.com'),
+        ('Jan', 'Plestenjak', 'jan.plestenjak@gmail.com'),
+        ('Stevie', 'Wonder', 'stevie.wonder@gmail.com'),
+        ('Fredi', 'Miler', 'fredi.miler@gmail.com');
 
 INSERT INTO pivovarna (naziv_pivovarne, x_koordinata, y_koordinata)
 VALUES  ('Union', 430, 377),
