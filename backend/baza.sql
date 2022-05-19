@@ -14,7 +14,7 @@ CREATE TABLE pivo (
     pena INT,
     okus INT,
     vonj INT,
-    crtna_koda INT
+    crtna_koda BIGINT,
 );
 
 CREATE TABLE uporabnik (

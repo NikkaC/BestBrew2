@@ -25,11 +25,11 @@ const pool = new Pool(proConfig);
 
 app.use(cors());
 
-//----------test na portu localhost:5000/test-----------
+//----test na portu localhost:5000/test-----
 app.get("/test", async (req, res) => {
     res.send({ express: 'Test Backenda' });
 });
-
+//-------------VRAČA VSA PIVA-----------------
 app.get("/Vsapiva", async (req, res) => {
     try {
       const vsaPiva = await pool.query("SELECT * FROM pivo");
@@ -37,6 +37,18 @@ app.get("/Vsapiva", async (req, res) => {
     } catch (err) {
       console.error(err.message);
     }
+});
+
+//-------------VRAČA PIVO z ID-----------------
+app.get("/pivo/:id", async (req, res) => {
+  const id = parseInt(req.params.id)
+
+  pool.query('SELECT * FROM pivo WHERE idPivo = $1', [id], (error, results) => {
+    if (error) {
+      throw error
+    }
+    res.status(200).json(results.rows)
+  })
 });
 
 app.get("/VseUporabnike", async (req, res) => {
@@ -50,24 +62,24 @@ app.get("/VseUporabnike", async (req, res) => {
 
 
 app.post("/dodajUporabnika", async (req, res) => {
-  const {ime,priimek,email,geslo,datum_rojstva} = req.body
+  const {ime,priimek,email} = req.body
 
-  pool.query('INSERT INTO uporabnik (&1, &2, &3, &4, &5)', [ ime, priimek,email,geslo,datum_rojstva], (error, results) => {
+  pool.query('INSERT INTO uporabnik (ime,priimek,email) VALUES ($1, $2, $3)', [ ime, priimek,email], (error, results) => {
     if (error) {
       throw error
     }
-    res.status(201).send(`Uporabnik added with ID: ${results.insertId}`)
+    res.status(201).send(`Uporabnik added`)
   })
 });
 
 app.post("/dodajPivo", async (req, res) => {
-  const {naziv, alkohol,vrsta,pena,okus,vonj,crtna_koda } = req.body
+  const {tk_pivovarna,naziv, alkohol,vrsta,pena,okus,vonj,crtna_koda } = req.body
 
-  pool.query('INSERT INTO pivo (&1, &2, &3, &4, &5, &6, &7)', [ naziv, alkohol,vrsta,pena,okus,vonj,crtna_koda], (error, results) => {
+  pool.query('INSERT INTO pivo (tk_pivovarna,naziv,alkohol,vrsta,pena,okus,vonj,crtna_koda) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)', [tk_pivovarna,naziv, alkohol,vrsta,pena,okus,vonj,crtna_koda], (error, results) => {
     if (error) {
       throw error
     }
-    res.status(201).send(`Pivo added with ID: ${results.insertId}`)
+    res.status(201).send(`Pivo added`)
   })
 });
 

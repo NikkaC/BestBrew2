@@ -1,6 +1,6 @@
 /*
   Terminal -> New Terminal
-  node backend/index.js 
+  node backend/ustvariPostgresTabele.js.js 
 */
 const express = require("express");
 const app = express();
@@ -34,6 +34,6 @@ pool.connect(function(err, client, done){
             console.log('error: ', err);
             process.exit(1);
         }
-        process.exit(0);
+        process.exit(0); 
     });
 });
