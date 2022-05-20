@@ -6,7 +6,7 @@ function MojaPiva() {
         <>
             <Card>
                 <Card.Text>
-                    MOJI PIRI PUST JIH!
+                    MOJI NAJBOLJSI PIRI ZA GAUDO !!!
                 </Card.Text>
             </Card>
         </>

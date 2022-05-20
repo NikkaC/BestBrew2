@@ -2,14 +2,14 @@ import React from 'react';
 import { Card, ListGroup, Button,CardGroup } from "react-bootstrap";
 import axios from 'axios';
 var Barcode = require('react-barcode');
-
+//-------------NI ŠE
 export default class SeznamPiv extends React.Component {
   state = {
     piva: []
   }
 
   componentDidMount() {
-    axios.get(`http://localhost:5000/Vsapiva`)
+    axios.get(`http://localhost:5000/seznamiPivSeznama/:idSeznama/:idUporabnik`)
       .then(res => {
         const piva = res.data;
         this.setState({ piva });
@@ -24,8 +24,7 @@ export default class SeznamPiv extends React.Component {
             .map(pivo =>
                 <Card className="flex-fill m-1" style={{ width: '12rem' }}>
                     <Card.Body>
-                        <Card.Title>{pivo.naziv}</Card.Title>
-                        <Card.Subtitle>{pivo.naziv_pivovarne}</Card.Subtitle>
+                        <Card.Title>{pivo.idseznam_piva}</Card.Title>
                         <ListGroup variant="flush">
                             <ListGroup.Item>{pivo.alkohol}</ListGroup.Item>
                             <ListGroup.Item>{pivo.vrsta}</ListGroup.Item>
@@ -34,7 +33,7 @@ export default class SeznamPiv extends React.Component {
                             <ListGroup.Item>Vonj: {pivo.vonj}</ListGroup.Item>
                             <Barcode value={pivo.crtna_koda} />,
                         </ListGroup>
-                        <Button variant="primary">Več</Button>
+                        <Button variant="primary">Ogled</Button>
                     </Card.Body>
                 </Card>
             )
