@@ -14,7 +14,7 @@ CREATE TABLE pivo (
     pena INT,
     okus INT,
     vonj INT,
-    crtna_koda BIGINT,
+    crtna_koda BIGINT
 );
 
 CREATE TABLE uporabnik (
@@ -82,7 +82,7 @@ VALUES  ('Union', 430, 377),
 
 INSERT INTO seznam_Piva (tk_uporabnik)
 VALUES  (1),
-        (2),
+        (1),
         (3),
         (4),
         (5),
@@ -190,15 +190,15 @@ VALUES  (2, 4, 1),
         (9, 10, 3);
 
 INSERT INTO priljubljeno_pivo (tk_pivo, tk_seznam_piva)
-VALUES  (2, 3),
-        (34, 10),
-        (21, 5),
+VALUES  (2, 1),
+        (34, 1),
+        (21, 1),
         (44, 2),
-        (16, 4),
-        (5, 1),
-        (33, 9),
-        (10, 7),
-        (27, 6),
+        (16, 2),
+        (5, 2),
+        (33, 3),
+        (10, 3),
+        (27, 3),
         (48, 8),
         (3, 2),
         (25, 6),
