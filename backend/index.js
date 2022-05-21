@@ -5,9 +5,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const port = process.env.PORT || 5000;  
-const fs = require('fs');
-const path = require('path');
+const port = process.env.PORT || 5001;  
 const bodyParser=require('body-parser');
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -23,7 +21,9 @@ const proConfig = {
 //-------------Spremenljivka-----------------
 const pool = new Pool(proConfig);
 
-app.use(cors());
+app.use(cors({
+  origin: '*'
+}));
 
 //----test na portu localhost:5000/test-----
 app.get("/test", async (req, res) => {
@@ -32,7 +32,7 @@ app.get("/test", async (req, res) => {
 //-------------VRAČA VSA PIVA-----------------
 app.get("/Vsapiva", async (req, res) => {
     try {
-      const vsaPiva = await pool.query("SELECT * FROM pivo");
+      const vsaPiva = await pool.query("SELECT naziv,naziv_pivovarne,alkohol,vrsta,pena,okus,vonj,crtna_koda FROM pivo LEFT JOIN pivovarna ON pivo.tk_pivovarna=pivovarna.idPivovarna;");
       res.json(vsaPiva.rows);
     } catch (err) {
       console.error(err.message);
@@ -50,7 +50,7 @@ app.get("/pivo/:id", async (req, res) => {
     res.status(200).json(results.rows)
   })
 });
-
+//----------VRAČA VSE uporabnike--------------
 app.get("/VseUporabnike", async (req, res) => {
   try {
     const visUporabniki = await pool.query("SELECT * FROM uporabnik");
@@ -59,8 +59,29 @@ app.get("/VseUporabnike", async (req, res) => {
     console.error(err.message);
   }
 });
+//-----VRAČA ID-je seznamov uporabnika--------------
+app.get("/seznamiUporabnikov/:idUporabnik", async (req, res) => {
+  const id = parseInt(req.params.idUporabnik)
+  try {
+    const vsiSeznami = await pool.query("SELECT idSeznam_piva FROM seznam_piva LEFT JOIN uporabnik ON uporabnik.iduporabnik=seznam_piva.tk_uporabnik  WHERE tk_uporabnik=$1;", [id], );
+    res.json(vsiSeznami.rows);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+//-----VRAČA vsa Piva znotraj seznama[idSeznama] določenega uporabnika[idUporabnik]--------------
+app.get("/seznamiPivSeznama/:idSeznama/:idUporabnik", async (req, res) => {
+  const idSeznama = parseInt(req.params.idSeznama)
+  const idUporabnik = parseInt(req.params.idUporabnik)
+  try {
+    const vsiSeznami = await pool.query("SELECT pivo.*,idseznam_piva FROM pivo INNER JOIN priljubljeno_pivo ON pivo.idPivo = priljubljeno_pivo.tk_pivo INNER JOIN seznam_Piva ON priljubljeno_pivo.tk_seznam_piva = seznam_Piva.idseznam_piva INNER JOIN uporabnik ON uporabnik.idUporabnik = seznam_Piva.tk_uporabnik WHERE uporabnik.idUporabnik = $1 AND seznam_Piva.idseznam_piva = $2;", [idUporabnik,idSeznama], );
+    res.json(vsiSeznami.rows);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
 
-
+//----------Doda enega uporabnika------------
 app.post("/dodajUporabnika", async (req, res) => {
   const {ime,priimek,email} = req.body
 
@@ -71,7 +92,7 @@ app.post("/dodajUporabnika", async (req, res) => {
     res.status(201).send(`Uporabnik added`)
   })
 });
-
+//-------------Doda eno pivo---------------
 app.post("/dodajPivo", async (req, res) => {
   const {tk_pivovarna,naziv, alkohol,vrsta,pena,okus,vonj,crtna_koda } = req.body
 
@@ -83,6 +104,8 @@ app.post("/dodajPivo", async (req, res) => {
   })
 });
 
-app.listen(5000, () => {
+
+
+app.listen(5001, () => {
     console.log(`Listening on port ${port}`);
   });

@@ -7,6 +7,7 @@ import { Napaka } from './components/error';
 import MojaPiva from './components/mojaPiva';
 import About from './components/about';
 import Iskanje from './components/iskanje';
+import BeerMap from './components/map';
 
 
 
@@ -21,6 +22,7 @@ function App() {
         <Route path='/iskanje' element={<Iskanje />}></Route>
         <Route path='/mojepive' element={<MojaPiva />}></Route>
         <Route path='/onas' element={<About />}></Route>
+        <Route path='/map' element={<BeerMap />}></Route>
 
         <Route path='*' element={<Napaka />}></Route>
       </Routes>
