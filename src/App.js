@@ -15,7 +15,7 @@ function App() {
     <>
       <NavB />
     
-
+        
       <Routes>
         <Route path='/' element={<PrvaStran />}></Route>
         <Route path='/iskanje' element={<Iskanje />}></Route>
@@ -24,7 +24,6 @@ function App() {
 
         <Route path='*' element={<Napaka />}></Route>
       </Routes>
-
   
     </>
     )

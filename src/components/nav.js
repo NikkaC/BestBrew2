@@ -2,8 +2,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-import { signInWithGoogle, signOutWithGoogle } from "./GoogleAuth/firebase";
-import { LogIn, LogOut } from './GoogleAuth/logInOut';
+import { LogIn2 } from "./GoogleAuth/firebase";
+import { LogIn, LoginZaProps, LogOut } from './GoogleAuth/logInOut';
 import { ProfilePic } from './GoogleAuth/userData';
 
 function NavB() {
@@ -11,7 +11,7 @@ function NavB() {
 
     <Navbar bg="light">
       <Container>
-        <Nav className="me-auto">
+        <Nav >
           <Navbar.Brand href="/">
             Svet Piv
           </Navbar.Brand>
@@ -22,9 +22,7 @@ function NavB() {
         </Nav>
         <Nav>
 
-          {localStorage.getItem("login")
-            ? <LogOut />
-            : <LogIn />}
+          <LogIn2 />
         </Nav>
       </Container>
     </Navbar>
@@ -33,3 +31,15 @@ function NavB() {
 }
 
 export default NavB;
+
+
+/*
+  
+
+<LoginZaProps />
+
+
+{localStorage.getItem("login")
+            ? <LogOut />
+            : <LogIn />}
+ */
