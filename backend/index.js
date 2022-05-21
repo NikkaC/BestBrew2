@@ -21,7 +21,9 @@ const proConfig = {
 //-------------Spremenljivka-----------------
 const pool = new Pool(proConfig);
 
-app.use(cors());
+app.use(cors({
+  origin: '*'
+}));
 
 //----test na portu localhost:5000/test-----
 app.get("/test", async (req, res) => {
