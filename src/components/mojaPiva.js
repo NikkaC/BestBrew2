@@ -1,5 +1,6 @@
 import React from "react";
-import { Card } from "react-bootstrap";
+import { Card,Container } from "react-bootstrap";
+import SeznamPriljubljenihPiv from "./seznamPriljubljenih";
 
 function MojaPiva() {
     return (
@@ -9,6 +10,9 @@ function MojaPiva() {
                     MOJI NAJBOLJSI PIRI ZA GAUDO !!!
                 </Card.Text>
             </Card>
+            <Container>  
+                <SeznamPriljubljenihPiv/>
+            </Container>  
         </>
     )
 }

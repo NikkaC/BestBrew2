@@ -70,11 +70,11 @@ app.get("/seznamiUporabnikov/:idUporabnik", async (req, res) => {
   }
 });
 //-----VRAČA vsa Piva znotraj seznama[idSeznama] določenega uporabnika[idUporabnik]--------------
-app.get("/seznamiPivSeznama/:idSeznama/:idUporabnik", async (req, res) => {
+app.get("/vsaPriljubljenaPiva/:idUporabnik", async (req, res) => {
   const idSeznama = parseInt(req.params.idSeznama)
   const idUporabnik = parseInt(req.params.idUporabnik)
   try {
-    const vsiSeznami = await pool.query("SELECT pivo.*,idseznam_piva FROM pivo INNER JOIN priljubljeno_pivo ON pivo.idPivo = priljubljeno_pivo.tk_pivo INNER JOIN seznam_Piva ON priljubljeno_pivo.tk_seznam_piva = seznam_Piva.idseznam_piva INNER JOIN uporabnik ON uporabnik.idUporabnik = seznam_Piva.tk_uporabnik WHERE uporabnik.idUporabnik = $1 AND seznam_Piva.idseznam_piva = $2;", [idUporabnik,idSeznama], );
+    const vsiSeznami = await pool.query("SELECT pivo.*,idseznam_piva FROM pivo INNER JOIN priljubljeno_pivo ON pivo.idPivo = priljubljeno_pivo.tk_pivo INNER JOIN seznam_Piva ON priljubljeno_pivo.tk_seznam_piva = seznam_Piva.idseznam_piva INNER JOIN uporabnik ON uporabnik.idUporabnik = seznam_Piva.tk_uporabnik WHERE uporabnik.idUporabnik = $1;", [idUporabnik], );
     res.json(vsiSeznami.rows);
   } catch (err) {
     console.error(err.message);

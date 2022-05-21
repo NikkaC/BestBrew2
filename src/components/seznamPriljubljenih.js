@@ -1,44 +1,50 @@
 import React from 'react';
 import { Card, ListGroup, Button,CardGroup } from "react-bootstrap";
 import axios from 'axios';
-var Barcode = require('react-barcode');
 //-------------NI ŠE
-export default class SeznamPiv extends React.Component {
+export default class SeznamPriljubljenihPiv extends React.Component {
   state = {
-    piva: []
+    piva: [],
+    uniques:[]
   }
 
   componentDidMount() {
-    axios.get(`http://localhost:5000/seznamiPivSeznama/:idSeznama/:idUporabnik`)
+    axios.get(`http://localhost:5001/vsaPriljubljenaPiva/1`)
       .then(res => {
         const piva = res.data;
-        this.setState({ piva });
+        const vsiIDs = piva.map(pivo => pivo.idseznam_piva);
+        let uniques = [...new Set(vsiIDs)];
+        this.setState({piva,uniques});
       })
   }
-
+ 
   render() {
     return (
+      <>
+        
         <CardGroup>
-        {
-          this.state.piva
-            .map(pivo =>
-                <Card className="flex-fill m-1" style={{ width: '12rem' }}>
+        {   
+          this.state.uniques
+            .map(unique =>
+            <Card  style={{ width: '12rem' }}>
                     <Card.Body>
-                        <Card.Title>{pivo.idseznam_piva}</Card.Title>
+                        <Card.Header as="h5">Seznam#{unique}</Card.Header>
                         <ListGroup variant="flush">
-                            <ListGroup.Item>{pivo.alkohol}</ListGroup.Item>
-                            <ListGroup.Item>{pivo.vrsta}</ListGroup.Item>
-                            <ListGroup.Item>Pena: {pivo.pena}</ListGroup.Item>
-                            <ListGroup.Item>Okus: {pivo.okus}</ListGroup.Item>
-                            <ListGroup.Item>Vonj: {pivo.vonj}</ListGroup.Item>
-                            <Barcode value={pivo.crtna_koda} />,
+                        {
+                        this.state.piva.filter(pivo =>pivo.idseznam_piva===unique).map(filteredPivo => (
+                            <>
+                            <ListGroup.Item>{filteredPivo.naziv}</ListGroup.Item>
+                            <Button variant="warning">Odstrani</Button>
+                            </>
+                            ))}
                         </ListGroup>
-                        <Button variant="primary">Ogled</Button>
+          
                     </Card.Body>
                 </Card>
             )
-        }
+          }      
       </CardGroup>
+      </>
     )
   }
 }
