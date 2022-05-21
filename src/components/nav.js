@@ -18,6 +18,7 @@ function NavB() {
           <Nav.Link href="/iskanje">Iskanje piv</Nav.Link>
           <Nav.Link href="/mojepive">Moje pive</Nav.Link>
           <Nav.Link href="/onas">O nas</Nav.Link>
+          <Nav.Link href="/map">Zemljevid</Nav.Link>
 
         </Nav>
         <Nav>
