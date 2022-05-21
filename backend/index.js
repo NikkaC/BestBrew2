@@ -104,7 +104,15 @@ app.post("/dodajPivo", async (req, res) => {
   })
 });
 
-
+//-------------Prikaže pivovarne na mapi------
+app.get("/map", async (req, res) => {
+    try {
+        const vsePivovarne = await pool.query("SELECT * FROM pivovarna;");
+        res.json(vsePivovarne.rows);
+    } catch (err) {
+        console.error(err.message);
+    }
+});
 
 app.listen(5001, () => {
     console.log(`Listening on port ${port}`);

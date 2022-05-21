@@ -1,35 +1,51 @@
 import React from "react";
 import { Map, Marker, Popup, TileLayer } from "react-leaflet";
+import axios from 'axios';
 import "../styles/map.css";
 
 
-export default function BeerMap() {
-  const [activePark, setActivePark] = React.useState(null);
+export default class BeerMap extends React.Component {
+  state = {
+    pivovarne: [],
+    koordinate: []
+  }
 
-  const union = [46.0569, 14.5058]
-  const lasko = [46.2397, 15.2677]
+  componentDidMount() {
+    axios.get(`http://localhost:5001/map`)
+      .then(res => {
+        const pivovarne = res.data;
+        const koordinate = [];
 
-  return (
-    <Map center={[46.0569, 14.5058]} zoom={8.5}>
-      <TileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-      />
+        pivovarne.map(pivovarna => {
+          koordinate.push([pivovarna.x_koordinata, pivovarna.y_koordinata]);
+        });
+        this.setState({ pivovarne, koordinate });
+      })
+  }
 
-<Marker position={union}>
-      <Popup>
-            Pivovarna Union <br /> Boljša kot Laško
-      </Popup>
-    </Marker>
+  render() {
+    return (
+      <Map center={[46.0569, 14.5058]} zoom={8.5}>
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        />
+        {
+          
 
-    <Marker position={lasko}>
-      <Popup>
-            Pivovarna Laško <br /> Slabša kot Union
-      </Popup>
-    </Marker>
+        this.state.pivovarne.map((pivovarna, stevec) => 
+          <Marker position={this.state.koordinate[stevec]}>
+            <Popup>
+              {pivovarna.naziv_pivovarne} <br /> Pozicija = x: {pivovarna.x_koordinata} y: {pivovarna.y_koordinata}
+            </Popup>
+          </Marker>
+        )
+        }
 
-      
-
-    </Map>
-  );
+  
+        
+  
+      </Map>
+    )
+  }
 }
