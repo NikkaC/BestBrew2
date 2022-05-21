@@ -2,6 +2,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
+import React from "react";
+
 import { LogIn2 } from "./GoogleAuth/firebase";
 import { LogIn, LoginZaProps, LogOut } from './GoogleAuth/logInOut';
 import { ProfilePic } from './GoogleAuth/userData';
@@ -23,7 +25,7 @@ function NavB() {
         </Nav>
         <Nav>
 
-          <LogIn2 />
+        <LogIn2 />
         </Nav>
       </Container>
     </Navbar>

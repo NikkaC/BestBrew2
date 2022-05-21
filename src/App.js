@@ -8,6 +8,7 @@ import MojaPiva from './components/mojaPiva';
 import About from './components/about';
 import Iskanje from './components/iskanje';
 import BeerMap from './components/map';
+import React from "react";
 
 
 
