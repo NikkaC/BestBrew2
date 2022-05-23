@@ -18,7 +18,7 @@ function NavB() {
             Svet Piv
           </Navbar.Brand>
           <Nav.Link href="/iskanje">Iskanje piv</Nav.Link>
-          <Nav.Link href="/mojepive">Moje pive</Nav.Link>
+          <Nav.Link href="/mojepive">Moja piva</Nav.Link>
           <Nav.Link href="/onas">O nas</Nav.Link>
           <Nav.Link href="/map">Zemljevid</Nav.Link>
 

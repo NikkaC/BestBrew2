@@ -7,7 +7,6 @@ function MojaPiva() {
         <>
             <Card>
                 <Card.Text>
-                    MOJI NAJBOLJSI PIRI ZA GAUDO !!!
                 </Card.Text>
             </Card>
             <Container>  
