@@ -2,6 +2,17 @@ import React from "react";
 import { Map, Marker, Popup, TileLayer } from "react-leaflet";
 import axios from 'axios';
 import "../styles/map.css";
+import L from "leaflet";
+
+
+function Icon (_iconSize){
+
+  return L.icon({
+    iconUrl: require("../components/Slike/beermarker5.png"),
+    iconSize: _iconSize
+  });
+
+}
 
 
 export default class BeerMap extends React.Component {
@@ -34,7 +45,7 @@ export default class BeerMap extends React.Component {
           
 
         this.state.pivovarne.map((pivovarna, stevec) => 
-          <Marker position={this.state.koordinate[stevec]}>
+          <Marker position={this.state.koordinate[stevec]} icon = {Icon(40)}>
             <Popup>
               {pivovarna.naziv_pivovarne} <br /> Pozicija = x: {pivovarna.x_koordinata} y: {pivovarna.y_koordinata}
             </Popup>
