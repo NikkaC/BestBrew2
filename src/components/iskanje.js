@@ -25,17 +25,22 @@ export default class Iskanje extends React.Component {
 
 
   searchChanged = event => {
-    this.setState({ search: event.target.value })
+    this.setState({ search: event.target.value.toLocaleLowerCase() })
   }
 
   render() {
     return (
       <>
 
-        <input type='text' placeholder="Išči po svetlosti piva" onChange={this.searchChanged} value={this.state.search} />
+
+
+<input className="searchBar" type='text' placeholder="Išči po imenu piva" onChange={this.searchChanged} value={this.state.search} />
+
+        
         <CardGroup>
+
           {this.state.piva
-            .filter(pivo => pivo.vrsta.includes(this.state.search))
+            .filter(pivo => pivo.naziv.toLocaleLowerCase().includes(this.state.search))
             .map(pivo => (
               <>
               
