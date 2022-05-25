@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 
 import React, { useState } from "react";
 import Image from 'react-bootstrap/Image'
-import { Card, Container } from 'react-bootstrap';
+import { Card, Container, Button } from 'react-bootstrap';
 
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { LoginZaProps } from "./logInOut";
@@ -53,6 +53,7 @@ export function LogIn2() {
             const ime = results.user.displayName;
             const email = results.user.email;
             const img = results.user.photoURL;
+            localStorage.setItem("email", email)
             setUser(prevUser => {
                 return ({ ime: prevUser.ime = ime, img: prevUser.img = img, button: prevUser.button = false });
             });
@@ -66,6 +67,7 @@ export function LogIn2() {
     const signOutWithGoogle = () => {
         signOut(auth).then(() => {
             alert("Odjava Uspešna!")
+            localStorage.setItem("email", null)
             setUser(prevUser => {
                 return ({ ime: prevUser.ime = null, img: prevUser.img = defaultImg, button: prevUser.button = true })
             });
@@ -91,8 +93,8 @@ export function LogIn2() {
 
                 <span>{ime}</span>
 
-                {user.button ? <button onClick={signInWithGoogle}>LogIn</button> :
-                    <button onClick={signOutWithGoogle}>LogOut</button>}
+                {user.button ? <Button height={"10%"} onClick={signInWithGoogle}>LogIn</Button> :
+                    <Button onClick={signOutWithGoogle}>LogOut</Button>}
 
             </Container>
         </div>
