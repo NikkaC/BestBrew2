@@ -3,7 +3,7 @@ import "./ageAuthPopUp.css";
 
 
 
-export default function JebisiMater({ closeWindow, popUpState2 }) {
+export default function AgeAuthPopUp({ closeWindow, popUpState2 }) {
 
     const handleClick = () => {
         closeWindow(false);

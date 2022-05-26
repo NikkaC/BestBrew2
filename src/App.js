@@ -9,7 +9,7 @@ import About from './components/about';
 import Iskanje from './components/iskanje';
 import BeerMap from './components/map';
 import React, { useState } from "react";
-import JebisiMater from './components/GoogleAuth/ageAuth';
+import AgeAuthPopUp from './components/GoogleAuth/ageAuth';
 import { getAuth } from 'firebase/auth';
 
 let popUpState2 = true
@@ -59,7 +59,7 @@ function App() {
       </Routes>
 
       {ageAuth &&
-        <JebisiMater closeWindow={setAgeAuth} popUpState2={popUpState}/>}
+        <AgeAuthPopUp closeWindow={setAgeAuth} popUpState2={popUpState}/>}
     </>
   )
 }
