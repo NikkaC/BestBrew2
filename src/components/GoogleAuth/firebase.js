@@ -6,6 +6,7 @@ import { Card, Container, Button } from 'react-bootstrap';
 
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { LoginZaProps } from "./logInOut";
+import { propTypes } from "react-barcode";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBTjkJQKReQE_tA5kPhkzUwOAir02LfsjQ",
@@ -26,13 +27,12 @@ const provider = new GoogleAuthProvider();
 export const signInWithGoogle2 = () => signInWithPopup(auth, provider);
 
 let login = Boolean(false);
-const defaultImg = "https://www.pngfind.com/pngs/m/676-6764065_default-profile-picture-transparent-hd-png-download.png"
-const defIme = "Prijavite se: ";
 
 
 
 
-export function LogIn2() {
+
+export function LogIn2({imageDef, imeDef, buttonDef, func}) {
 
     /*
     const [user, setUser] = useState(() => {
@@ -41,7 +41,13 @@ export function LogIn2() {
     });
     */
 
-    const [user, setUser] = useState({ ime: defIme, img: defaultImg, button: true });
+
+   /*
+    const [user, setUser] = useState(() => {
+        setUser( user.ime = defIme, user.img = defaultImg, user.button = true );    
+    });
+*/
+    const [user, setUser] = useState({ ime: imeDef, img: imageDef, button: buttonDef });
     const ime = user.ime;
     const imgUrl = user.img;
     const button = user.button
@@ -54,6 +60,9 @@ export function LogIn2() {
             const email = results.user.email;
             const img = results.user.photoURL;
             localStorage.setItem("email", email)
+            func(ime)
+            console.log(results.user);
+            console.log(results.user.refreshToken);
             setUser(prevUser => {
                 return ({ ime: prevUser.ime = ime, img: prevUser.img = img, button: prevUser.button = false });
             });
@@ -69,7 +78,8 @@ export function LogIn2() {
             alert("Odjava Uspešna!")
             localStorage.setItem("email", null)
             setUser(prevUser => {
-                return ({ ime: prevUser.ime = null, img: prevUser.img = defaultImg, button: prevUser.button = true })
+                return ({ ime: prevUser.ime = imeDef, img: prevUser.img = imageDef, button: prevUser.button = true
+                 })
             });
 
 

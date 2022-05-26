@@ -13,16 +13,41 @@ import JebisiMater from './components/GoogleAuth/ageAuth';
 import { getAuth } from 'firebase/auth';
 
 let popUpState2 = true
-
+localStorage.setItem("ageAuth", potrdilo)
+let potrdilo = localStorage.getItem("ageAuth")
 
 
 
 function App() {
-  const [ageAuth, setAgeAuth] = useState(popUpState2)
+
+  let potrdilo = localStorage.getItem("ageAuth")
+  if (potrdilo === null) {
+    potrdilo = true
+  }
+  
+  const [ageAuth, setAgeAuth] = useState(potrdilo)
+
+  const popUpState = (data) => {
+    localStorage.setItem("ageAuth", data)
+  }
+
+
+  const defaultImg = "https://www.pngfind.com/pngs/m/676-6764065_default-profile-picture-transparent-hd-png-download.png"
+  const defIme = "Prijavite se: ";
+  const defButton = true;
+  
+  const getData = (data) => {
+    console.log("Index data");
+    console.log(data);
+  };
+
+
+
 
   return (
     <>
-      <NavB />
+      
+      <NavB image={defaultImg} ime={defIme} button={defButton} dataPull={getData} />
       <Routes>
         <Route path='/' element={<PrvaStran />}></Route>
         <Route path='/iskanje' element={<Iskanje />}></Route>
@@ -32,9 +57,9 @@ function App() {
 
         <Route path='*' element={<Napaka />}></Route>
       </Routes>
-      
-      {/*ageAuth &&
-        <JebisiMater closeWindow={setAgeAuth} />*/}
+
+      {ageAuth &&
+        <JebisiMater closeWindow={setAgeAuth} popUpState2={popUpState}/>}
     </>
   )
 }
