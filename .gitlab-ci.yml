@@ -18,4 +18,4 @@ netlify:
   image: node:15
   script: 
     - npm install -g netlify-cli express 
-    - netlify deploy --dir=build --prod
+    - netlify deploy --dir=client/build --prod
