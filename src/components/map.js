@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Map, Marker, Popup, TileLayer } from "react-leaflet";
+//import { useMap } from 'react-leaflet/hooks'
 import axios from 'axios';
 import "../styles/map.css";
 import L from "leaflet";
@@ -14,8 +15,36 @@ function Icon (_iconSize){
 
 }
 
+/*function LocationMarker() {
+  const [position, setPosition] = useState(null);
+
+  const map = useMap();
+
+  useEffect(() => {
+    map.locate().on("locationfound", function (e) {
+      setPosition(e.latlng);
+      map.flyTo(e.latlng, map.getZoom());
+    });
+  }, []);
+
+  return position === null ? null : (
+    <Marker position={position}>
+      <Popup>You are here</Popup>
+    </Marker>
+  );
+}*/
+
+
 
 export default class BeerMap extends React.Component {
+
+  
+  
+  
+  
+  
+  
+  
   state = {
     pivovarne: [],
     koordinate: []
@@ -53,7 +82,7 @@ export default class BeerMap extends React.Component {
         )
         }
 
-  
+
         
   
       </Map>
