@@ -1,6 +1,6 @@
 /*
   Terminal -> New Terminal
-  node backend/index.js 
+  nodemon index.js 
 */
 const express = require("express");
 const app = express();
@@ -10,6 +10,7 @@ const bodyParser=require('body-parser');
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: true }));
 const Pool = require("pg").Pool;
+const serverless = require("serverless-http");
 
 //--------CONFIG ZA POVEZAVO PREKO URI-------
 const proConfig = {
@@ -117,3 +118,7 @@ app.get("/map", async (req, res) => {
 app.listen(5001, () => {
     console.log(`Listening on port ${port}`);
   });
+
+module.exports = app;
+
+module.exports.handler = serverless(app);
