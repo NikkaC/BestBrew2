@@ -17,6 +17,5 @@ netlify:
   stage: deploy
   image: node:15
   script: 
-    - cd client
     - npm install -g netlify-cli 
     - netlify deploy --dir=build --prod
