@@ -13,8 +13,8 @@ import AgeAuthPopUp from './components/GoogleAuth/ageAuth';
 import { getAuth } from 'firebase/auth';
 
 let popUpState2 = true
-localStorage.setItem("ageAuth", potrdilo)
 let potrdilo = localStorage.getItem("ageAuth")
+localStorage.setItem("ageAuth", potrdilo)
 
 
 
