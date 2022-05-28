@@ -6,6 +6,7 @@ import React from "react";
 
 import { LogIn2 } from "./GoogleAuth/firebase";
 
+
 function NavB({ image, ime, button, dataPull }) {
 
   const pull_data = (data) => {
