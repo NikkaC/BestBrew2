@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Map, Marker, Popup, TileLayer } from "react-leaflet";
 //import { useMap } from 'react-leaflet/hooks'
 import axios from 'axios';
@@ -56,9 +56,10 @@ export default class BeerMap extends React.Component {
         const pivovarne = res.data;
         const koordinate = [];
 
-        pivovarne.map(pivovarna => {
+        pivovarne.foreach(pivovarna => {
           koordinate.push([pivovarna.x_koordinata, pivovarna.y_koordinata]);
         });
+
         this.setState({ pivovarne, koordinate });
       })
   }

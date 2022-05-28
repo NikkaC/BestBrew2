@@ -8,13 +8,11 @@ import MojaPiva from './components/mojaPiva';
 import About from './components/about';
 import Iskanje from './components/iskanje';
 import IskanjeBarcode from './components/iskanjeBarcode';
-import Modal from './components/modal';
 import BeerMap from './components/map';
 import React, { useState } from "react";
 import AgeAuthPopUp from './components/GoogleAuth/ageAuth';
-import { getAuth } from 'firebase/auth';
 
-let popUpState2 = true
+
 let potrdilo = localStorage.getItem("ageAuth")
 localStorage.setItem("ageAuth", potrdilo)
 

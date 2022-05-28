@@ -1,10 +1,11 @@
+/*
 import { Button } from "bootstrap";
 import Image from 'react-bootstrap/Image'
 import React, { useState } from "react";
 import { signInWithGoogle, signOutWithGoogle, auth } from "./firebase";
 import { Card, Container } from 'react-bootstrap';
 
-/*
+
 
 const defaultImg = "https://www.pngfind.com/pngs/m/676-6764065_default-profile-picture-transparent-hd-png-download.png"
 const defIme = "Prijavite se: ";

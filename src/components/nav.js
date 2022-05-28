@@ -5,9 +5,6 @@ import { Link } from 'react-router-dom';
 import React from "react";
 
 import { LogIn2 } from "./GoogleAuth/firebase";
-import { LogIn, LoginZaProps, LogOut } from './GoogleAuth/logInOut';
-import { ProfilePic } from './GoogleAuth/userData';
-import { Button } from 'react-bootstrap';
 
 function NavB({ image, ime, button, dataPull }) {
 

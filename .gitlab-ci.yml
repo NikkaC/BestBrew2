@@ -7,7 +7,7 @@ build project:
   image: node:15
   script:
       - npm install --legacy-peer-deps
-      - npm run build
+      - npm run-script build
   artifacts:
     paths:
       - build/

@@ -2,19 +2,18 @@ import React, { useState, useEffect } from "react";
 import { Card, Button, Container, ListGroup, CardGroup } from "react-bootstrap";
 import '../styles/iskanje.css';
 import 'mdbreact/dist/css/mdb.css'
-import SeznamPiv from "./seznamPiv";
 import axios from 'axios';
 var Barcode = require('react-barcode');
 
 
 
-
+/*
 const handleOnSearch = (string, results) => {
-  // onSearch will have as the first callback parameter
-  // the string searched and for the second the results.
+   onSearch will have as the first callback parameter
+   the string searched and for the second the results.
   console.log(string, results)
 }
-
+*/
 
 
 

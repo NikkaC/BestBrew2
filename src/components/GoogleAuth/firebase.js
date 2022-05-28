@@ -2,11 +2,11 @@ import { initializeApp } from "firebase/app";
 
 import React, { useState } from "react";
 import Image from 'react-bootstrap/Image'
-import { Card, Container, Button } from 'react-bootstrap';
+import { Container, Button } from 'react-bootstrap';
 
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
-import { LoginZaProps } from "./logInOut";
-import { propTypes } from "react-barcode";
+//import { LoginZaProps } from "./logInOut";
+//import { propTypes } from "react-barcode";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBTjkJQKReQE_tA5kPhkzUwOAir02LfsjQ",
@@ -26,7 +26,7 @@ const provider = new GoogleAuthProvider();
 
 export const signInWithGoogle2 = () => signInWithPopup(auth, provider);
 
-let login = Boolean(false);
+//let login = Boolean(false);
 
 
 
@@ -50,7 +50,7 @@ export function LogIn2({imageDef, imeDef, buttonDef, func}) {
     const [user, setUser] = useState({ ime: imeDef, img: imageDef, button: buttonDef });
     const ime = user.ime;
     const imgUrl = user.img;
-    const button = user.button
+    //const button = user.button
 
 
 

@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/prvastran.css';
 import pivo from './Slike/BESTBREW.png';
 import Image from 'react-bootstrap/Image'
-import { Container, Row, Col, Card, Button} from 'react-bootstrap';
+import { Container, Card, Button} from 'react-bootstrap';
 
 function PrvaStran() {
   return (
