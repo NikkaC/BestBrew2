@@ -16,5 +16,6 @@ netlify:
   stage: deploy
   image: node:15
   script: 
+    - node backend/index.js
     - npm install -g netlify-cli
     - netlify deploy --dir=build --prod
