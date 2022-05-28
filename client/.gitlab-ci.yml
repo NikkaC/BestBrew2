@@ -17,5 +17,4 @@ netlify:
   image: node:15
   script: 
     - npm install -g netlify-cli express 
-    - node backend/index.js
     - netlify deploy --dir=build --prod
