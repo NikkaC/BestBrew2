@@ -21,6 +21,7 @@ function NavB() {
           <Nav.Link href="/mojepive">Moja piva</Nav.Link>
           <Nav.Link href="/onas">O nas</Nav.Link>
           <Nav.Link href="/map">Zemljevid</Nav.Link>
+          <Nav.Link href="/barcode">Barcode</Nav.Link>
 
         </Nav>
         <Nav>

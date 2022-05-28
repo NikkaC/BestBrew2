@@ -7,10 +7,11 @@ import { Napaka } from './components/error';
 import MojaPiva from './components/mojaPiva';
 import About from './components/about';
 import Iskanje from './components/iskanje';
+import IskanjeBarcode from './components/iskanjeBarcode';
+import Modal from './components/modal';
 import BeerMap from './components/map';
-import React from "react";
-
-
+import React, { StrictMode } from "react";
+import ReactDOM from 'react-dom';
 
 function App() {
   return (
@@ -24,12 +25,13 @@ function App() {
         <Route path='/mojepive' element={<MojaPiva />}></Route>
         <Route path='/onas' element={<About />}></Route>
         <Route path='/map' element={<BeerMap />}></Route>
-
+        <Route path='/barcode' element={<IskanjeBarcode />}></Route>
         <Route path='*' element={<Napaka />}></Route>
       </Routes>
-  
+
     </>
     )
 }
+
 
 export default App;
