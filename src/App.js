@@ -10,10 +10,6 @@ import Iskanje from './components/iskanje';
 import IskanjeBarcode from './components/iskanjeBarcode';
 import Modal from './components/modal';
 import BeerMap from './components/map';
-<<<<<<< HEAD
-import React, { StrictMode } from "react";
-import ReactDOM from 'react-dom';
-=======
 import React, { useState } from "react";
 import AgeAuthPopUp from './components/GoogleAuth/ageAuth';
 import { getAuth } from 'firebase/auth';
@@ -23,7 +19,6 @@ let potrdilo = localStorage.getItem("ageAuth")
 localStorage.setItem("ageAuth", potrdilo)
 
 
->>>>>>> 935b08f04eee6e08816c03dbb7bb7d73ffce125d
 
 function App() {
 
@@ -65,18 +60,10 @@ function App() {
         <Route path='*' element={<Napaka />}></Route>
       </Routes>
 
-<<<<<<< HEAD
-=======
       {ageAuth &&
         <AgeAuthPopUp closeWindow={setAgeAuth} popUpState2={popUpState}/>}
->>>>>>> 935b08f04eee6e08816c03dbb7bb7d73ffce125d
     </>
   )
 }
 
-<<<<<<< HEAD
-
 export default App;
-=======
-export default App;
->>>>>>> 935b08f04eee6e08816c03dbb7bb7d73ffce125d
