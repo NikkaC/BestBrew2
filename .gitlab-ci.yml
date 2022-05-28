@@ -6,6 +6,7 @@ build project:
   stage: build
   image: node:15
   script:
+      - cd client
       - npm install --legacy-peer-deps
       - npm run-script build
   artifacts:
