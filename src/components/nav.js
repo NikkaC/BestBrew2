@@ -23,21 +23,12 @@ function NavB({ image, ime, button, dataPull }) {
         <Nav >
           <Link to="/">
             Svet Piv
-<<<<<<< HEAD
-          </Navbar.Brand>
-          <Nav.Link href="/iskanje">Iskanje piv</Nav.Link>
-          <Nav.Link href="/mojepive">Moja piva</Nav.Link>
-          <Nav.Link href="/onas">O nas</Nav.Link>
-          <Nav.Link href="/map">Zemljevid</Nav.Link>
-          <Nav.Link href="/barcode">Barcode</Nav.Link>
-=======
+
           </Link>
           <Link to="/iskanje">Iskanje piv</Link>
           <Link to="/mojepive">Moja piva</Link>
           <Link to="/onas">O nas</Link>
           <Link to="/map">Zemljevid</Link>
->>>>>>> 935b08f04eee6e08816c03dbb7bb7d73ffce125d
-
         </Nav>
 
         <Nav>
