@@ -1,6 +1,7 @@
-import React from 'react';
-import { Card, ListGroup, Button,CardGroup } from "react-bootstrap";
+import React, { StrictMode } from 'react';
+import { CardGroup, Card, ListGroup, Button } from "react-bootstrap";
 import axios from 'axios';
+import { Container } from 'mdbreact';
 var Barcode = require('react-barcode');
 
 export default class SeznamPiv extends React.Component {
@@ -18,6 +19,7 @@ export default class SeznamPiv extends React.Component {
 
   render() {
     return (
+    <>
         <CardGroup>
         {
           this.state.piva
@@ -40,6 +42,7 @@ export default class SeznamPiv extends React.Component {
             )
         }
       </CardGroup>
+    </>
     )
   }
 }
