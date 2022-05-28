@@ -9,7 +9,7 @@ build project:
       - npm install
       - npm run-script build
   artifacts:
-    -paths:
+    paths:
       - build/
 
 netlify:
