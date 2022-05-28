@@ -53,7 +53,9 @@ export function LogIn2() {
             const ime = results.user.displayName;
             const email = results.user.email;
             const img = results.user.photoURL;
-            localStorage.setItem("email", email)
+           
+            
+            
             setUser(prevUser => {
                 return ({ ime: prevUser.ime = ime, img: prevUser.img = img, button: prevUser.button = false });
             });
