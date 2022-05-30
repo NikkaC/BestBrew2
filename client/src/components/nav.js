@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import "../styles/navbar.css";
 
 import React from "react";
 
@@ -17,20 +18,17 @@ function NavB({ image, ime, button, dataPull }) {
   return (
     <Navbar bg="light">
       <Container>
-      
+      <ul>
         <Nav >
-          <Link to="/">
-            Svet Piv
-
-          </Link>
-          <Link to="/iskanje">Iskanje piv</Link>
-          <Link to="/mojepive">Moja piva</Link>
-          <Link to="/onas">O nas</Link>
-          <Link to="/map">Zemljevid</Link>
+          <li><Link to="/">Začetna stran</Link></li>
+          <li> <Link to="/iskanje">Iskanje piv</Link></li>
+          <li><Link to="/mojepive">Moja piva</Link></li>
+          <li> <Link to="/onas">O nas</Link></li>
+          <li> <Link to="/map">Zemljevid</Link></li>
         </Nav>
-
+        </ul>
         <Nav>
-
+        
           <LogIn2 imageDef={image} imeDef={ime} buttonDef={button} func={pull_data} />
         </Nav>
       </Container>
