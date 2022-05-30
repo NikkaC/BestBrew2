@@ -56,7 +56,9 @@ export default class BeerMap extends React.Component {
         const pivovarne = res.data;
         const koordinate = [];
 
-        pivovarne.foreach(pivovarna => {
+        console.log(pivovarne);
+
+        pivovarne.forEach(pivovarna => {
           koordinate.push([pivovarna.x_koordinata, pivovarna.y_koordinata]);
         });
 
