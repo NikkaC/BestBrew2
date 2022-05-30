@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Card, Button, Container, ListGroup, CardGroup } from "react-bootstrap";
+import { Card, Button, Container, ListGroup, CardGroup, Form } from "react-bootstrap";
 import '../styles/iskanje.css';
 import 'mdbreact/dist/css/mdb.css'
 import axios from 'axios';
@@ -43,18 +43,11 @@ export default function Iskanje() {
 
   return (
     <>
-      <CardGroup>
-        <SearchChange piva={piva} />
-      </CardGroup>
-      <center>
-        <Card>
-          <Card.Text>
+        
+      
 
-          </Card.Text>
-        </Card>
-      </center>
-      <Container>
-      </Container>
+          <SearchChange piva={piva} />
+
     </>
   )
 }
@@ -72,8 +65,17 @@ function SearchChange({ piva }) {
 
   return (
     <>
-      <input className="searchBar" type='text' placeholder="Išči po imenu piva" onChange={handleChange} />
-
+    <br/>
+    <center>
+      <label class="naslov">Išči po imenu piva</label><br/>
+      <div class="form__group">
+        <input class="form__input" type='text' placeholder="Vnesi ime piva" onChange={handleChange} />
+        <label for="name" class="form__label">Rezultati iskanja</label>
+</div>
+      </center>
+      <br/>
+      
+      <CardGroup>
       {piva.filter(pivo => pivo.naziv.toLocaleLowerCase().includes(search)).map(pivo => (
 
 
@@ -92,9 +94,11 @@ function SearchChange({ piva }) {
             <Button variant="primary">Več</Button>
           </Card.Body>
         </Card>
+      
 
-
-      ))}
+      )
+      )}
+      </CardGroup>
     </>
   )
 }
