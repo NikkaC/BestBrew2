@@ -63,7 +63,7 @@ function About() {
                     <Card.Img variant="top" src={slikaMatic} />
                     <Card.Body>
                         <Card.Title>Matic Absec</Card.Title>
-                        <Card.Subtitle>Slovenj Gradec</Card.Subtitle>
+                        <Card.Subtitle>Celje/Kranj</Card.Subtitle>
                         <Card.Text>
                             Fullstack engineer<br />
                             DJ
