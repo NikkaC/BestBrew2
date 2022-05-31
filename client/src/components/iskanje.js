@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Card, Button, Container, ListGroup, CardGroup, Form } from "react-bootstrap";
+import mojaPiva from './mojaPiva'
 import '../styles/iskanje.css';
 import 'mdbreact/dist/css/mdb.css'
 import axios from 'axios';
@@ -60,9 +61,16 @@ function SearchChange({ piva }) {
   },
     [search]);
 
+
+  const [mojaPiva, setMojaPiva] = useState([]);
+
+
+
   const handleChange = (event) => {
     setSearch(event.target.value.toLocaleLowerCase());
   };
+
+  console.log(mojaPiva);
 
   return (
     <motion.div
@@ -97,6 +105,14 @@ function SearchChange({ piva }) {
                 <Barcode value={pivo.crtna_koda} />,
               </ListGroup>
               <Button variant="primary">Več</Button>
+              <Button variant="primary" id="mojaPivaShrani"
+      onClick={() => setMojaPiva([...new Set([pivo])])}
+    >
+      Dodaj med priljubljene
+      
+      </Button>
+
+      <mojaPiva likedPiva={mojaPiva.likedPiva} /> 
             </Card.Body>
           </Card>
 
