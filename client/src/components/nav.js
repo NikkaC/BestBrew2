@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, Container, Nav } from 'react-bootstrap';
+import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import "../styles/navbar.css";
 
@@ -16,7 +16,35 @@ function NavB({ image, ime, button, dataPull }) {
 
 
   return (
-    <Navbar bg="light">
+    <Navbar bg="light" expand="lg">
+      <Container>
+        <Navbar.Brand><Link to="/">Best Brew</Link> </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link><Link to="/iskanje">Iskanje piv</Link>  </Nav.Link>
+            <Nav.Link><Link to="/mojepive">Moja piva</Link>    </Nav.Link>
+            <Nav.Link><Link to="/map">Zemljevid</Link>    </Nav.Link>
+            <Nav.Link><Link to="/onas">O nas</Link>    </Nav.Link>
+
+          </Nav>
+        </Navbar.Collapse>
+        <Nav>
+          <LogIn2 imageDef={image} imeDef={ime} buttonDef={button} func={pull_data} />
+        </Nav>
+      </Container>
+    </Navbar>
+
+  )
+}
+
+export default NavB;
+
+
+/*
+  
+
+<Navbar bg="light">
       <Container>
       <ul>
         <Nav >
@@ -34,14 +62,9 @@ function NavB({ image, ime, button, dataPull }) {
       </Container>
     </Navbar>
 
-  )
-}
-
-export default NavB;
 
 
-/*
-  
+
 
 <LoginZaProps />
 
