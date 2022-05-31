@@ -18,7 +18,7 @@ function NavB({ image, ime, button, dataPull }) {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <Navbar.Brand><Link to="/">Best Brew</Link> </Navbar.Brand>
+        <Navbar.Brand><Link to="/" style={{}}><b>Best Brew</b></Link> </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">

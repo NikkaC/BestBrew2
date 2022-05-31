@@ -44,11 +44,7 @@ export default function Iskanje() {
 
   return (
     <>
-
-
-
       <SearchChange piva={piva} />
-
     </>
   )
 }
