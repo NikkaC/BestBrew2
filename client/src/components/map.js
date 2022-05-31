@@ -5,8 +5,9 @@ import axios from 'axios';
 import "../styles/map.css";
 import L from "leaflet";
 
+import { motion } from 'framer-motion/dist/framer-motion';
 
-function Icon (_iconSize){
+function Icon(_iconSize) {
 
   return L.icon({
     iconUrl: require("../components/Slike/beermarker5.png"),
@@ -38,13 +39,13 @@ function Icon (_iconSize){
 
 export default class BeerMap extends React.Component {
 
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
   state = {
     pivovarne: [],
     koordinate: []
@@ -68,27 +69,34 @@ export default class BeerMap extends React.Component {
 
   render() {
     return (
-      <Map center={[46.0569, 14.5058]} zoom={8.5}>
-        <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        />
-        {
-          
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, transition: { duration: 0.5 } }}
+        exit={{ opacity: 0, transition: { duration: 0.1 } }}
+      >
 
-        this.state.pivovarne.map((pivovarna, stevec) => 
-          <Marker position={this.state.koordinate[stevec]} icon = {Icon(40)}>
-            <Popup>
-              {pivovarna.naziv_pivovarne} <br /> Pozicija = x: {pivovarna.x_koordinata} y: {pivovarna.y_koordinata}
-            </Popup>
-          </Marker>
-        )
-        }
+        <Map center={[46.0569, 14.5058]} zoom={8.5}>
+          <TileLayer
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          />
+          {
 
 
-        
-  
-      </Map>
+            this.state.pivovarne.map((pivovarna, stevec) =>
+              <Marker position={this.state.koordinate[stevec]} icon={Icon(40)}>
+                <Popup>
+                  {pivovarna.naziv_pivovarne} <br /> Pozicija = x: {pivovarna.x_koordinata} y: {pivovarna.y_koordinata}
+                </Popup>
+              </Marker>
+            )
+          }
+
+
+
+
+        </Map>
+      </motion.div>
     )
   }
 }

@@ -11,6 +11,7 @@ import IskanjeBarcode from './components/iskanjeBarcode';
 import BeerMap from './components/map';
 import React, { useState } from "react";
 import AgeAuthPopUp from './components/GoogleAuth/ageAuth';
+import AnimacijaStrani from './components/animation';
 
 
 let potrdilo = localStorage.getItem("ageAuth")
@@ -48,18 +49,10 @@ function App() {
     <>
       
       <NavB image={defaultImg} ime={defIme} button={defButton} dataPull={getData} />
-      <Routes>
-        <Route path='/' element={<PrvaStran />}></Route>
-        <Route path='/iskanje' element={<Iskanje />}></Route>
-        <Route path='/mojepive' element={<MojaPiva />}></Route>
-        <Route path='/onas' element={<About />}></Route>
-        <Route path='/map' element={<BeerMap />}></Route>
-        <Route path='/barcode' element={<IskanjeBarcode />}></Route>
-        <Route path='*' element={<Napaka />}></Route>
-      </Routes>
+      <AnimacijaStrani />
 
-      {ageAuth &&
-        <AgeAuthPopUp closeWindow={setAgeAuth} popUpState2={popUpState}/>}
+      {/*ageAuth &&
+        <AgeAuthPopUp closeWindow={setAgeAuth} popUpState2={popUpState}/>*/}
     </>
   )
 }

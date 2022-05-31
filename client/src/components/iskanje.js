@@ -3,6 +3,7 @@ import { Card, Button, Container, ListGroup, CardGroup, Form } from "react-boots
 import '../styles/iskanje.css';
 import 'mdbreact/dist/css/mdb.css'
 import axios from 'axios';
+import { motion } from 'framer-motion/dist/framer-motion';
 var Barcode = require('react-barcode');
 
 
@@ -43,10 +44,10 @@ export default function Iskanje() {
 
   return (
     <>
-        
-      
 
-          <SearchChange piva={piva} />
+
+
+      <SearchChange piva={piva} />
 
     </>
   )
@@ -64,41 +65,45 @@ function SearchChange({ piva }) {
   };
 
   return (
-    <>
-    <br/>
-    <center>
-      <label class="naslov">Išči po imenu piva</label><br/>
-      <div class="form__group">
-        <input class="form__input" type='text' placeholder="Vnesi ime piva" onChange={handleChange} />
-        <label for="name" class="form__label">Rezultati iskanja</label>
-</div>
+    <motion.div
+      initial={{  width: 0 }}
+      animate={{ width: window.innerWidth }}
+      exit={{ x: window.innerWidth, transition: { duration: 0.1 } }}
+    >
+      <br />
+      <center>
+        <label class="naslov">Išči po imenu piva</label><br />
+        <div class="form__group">
+          <input class="form__input" type='text' placeholder="Vnesi ime piva" onChange={handleChange} />
+          <label for="name" class="form__label">Rezultati iskanja</label>
+        </div>
       </center>
-      <br/>
-      
+      <br />
+
       <CardGroup>
-      {piva.filter(pivo => pivo.naziv.toLocaleLowerCase().includes(search)).map(pivo => (
+        {piva.filter(pivo => pivo.naziv.toLocaleLowerCase().includes(search)).map(pivo => (
 
 
-        <Card className="flex-fill m-1" style={{ width: '12rem' }} >
-          <Card.Body>
-            <Card.Title>{pivo.naziv}</Card.Title>
-            <Card.Subtitle>{pivo.naziv_pivovarne}</Card.Subtitle>
-            <ListGroup variant="flush">
-              <ListGroup.Item>{pivo.alkohol}</ListGroup.Item>
-              <ListGroup.Item>{pivo.vrsta}</ListGroup.Item>
-              <ListGroup.Item>Pena: {pivo.pena}</ListGroup.Item>
-              <ListGroup.Item>Okus: {pivo.okus}</ListGroup.Item>
-              <ListGroup.Item>Vonj: {pivo.vonj}</ListGroup.Item>
-              <Barcode value={pivo.crtna_koda} />,
-            </ListGroup>
-            <Button variant="primary">Več</Button>
-          </Card.Body>
-        </Card>
-      
+          <Card className="flex-fill m-1" style={{ width: '12rem' }} >
+            <Card.Body>
+              <Card.Title>{pivo.naziv}</Card.Title>
+              <Card.Subtitle>{pivo.naziv_pivovarne}</Card.Subtitle>
+              <ListGroup variant="flush">
+                <ListGroup.Item>{pivo.alkohol}</ListGroup.Item>
+                <ListGroup.Item>{pivo.vrsta}</ListGroup.Item>
+                <ListGroup.Item>Pena: {pivo.pena}</ListGroup.Item>
+                <ListGroup.Item>Okus: {pivo.okus}</ListGroup.Item>
+                <ListGroup.Item>Vonj: {pivo.vonj}</ListGroup.Item>
+                <Barcode value={pivo.crtna_koda} />,
+              </ListGroup>
+              <Button variant="primary">Več</Button>
+            </Card.Body>
+          </Card>
 
-      )
-      )}
+
+        )
+        )}
       </CardGroup>
-    </>
+    </motion.div>
   )
 }
