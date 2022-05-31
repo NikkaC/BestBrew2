@@ -2,11 +2,14 @@ import { initializeApp } from "firebase/app";
 
 import React, { useState } from "react";
 import Image from 'react-bootstrap/Image'
-import { Container, Button } from 'react-bootstrap';
+import { Container, Button, Modal, Row, Col } from 'react-bootstrap';
 
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 //import { LoginZaProps } from "./logInOut";
 //import { propTypes } from "react-barcode";
+
+
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyBTjkJQKReQE_tA5kPhkzUwOAir02LfsjQ",
@@ -32,7 +35,7 @@ export const signInWithGoogle2 = () => signInWithPopup(auth, provider);
 
 
 
-export function LogIn2({imageDef, imeDef, buttonDef, func}) {
+export function LogIn2({ imageDef, imeDef, buttonDef, func }) {
 
     /*
     const [user, setUser] = useState(() => {
@@ -42,11 +45,11 @@ export function LogIn2({imageDef, imeDef, buttonDef, func}) {
     */
 
 
-   /*
-    const [user, setUser] = useState(() => {
-        setUser( user.ime = defIme, user.img = defaultImg, user.button = true );    
-    });
-*/
+    /*
+     const [user, setUser] = useState(() => {
+         setUser( user.ime = defIme, user.img = defaultImg, user.button = true );    
+     });
+ */
     const [user, setUser] = useState({ ime: imeDef, img: imageDef, button: buttonDef });
     const ime = user.ime;
     const imgUrl = user.img;
@@ -75,11 +78,11 @@ export function LogIn2({imageDef, imeDef, buttonDef, func}) {
 
     const signOutWithGoogle = () => {
         signOut(auth).then(() => {
-            alert("Odjava Uspešna!")
             localStorage.setItem("email", null)
             setUser(prevUser => {
-                return ({ ime: prevUser.ime = imeDef, img: prevUser.img = imageDef, button: prevUser.button = true
-                 })
+                return ({
+                    ime: prevUser.ime = imeDef, img: prevUser.img = imageDef, button: prevUser.button = true
+                })
             });
 
 
@@ -94,22 +97,57 @@ export function LogIn2({imageDef, imeDef, buttonDef, func}) {
         );
     };
 
+    const [modalShow, setModalShow] = React.useState({ showModal: false });
+
+
+
+
+    const cliclkHandler = () => {
+        signOutWithGoogle();
+        setModalShow(prevModalShow => { return ({ showModal: true }) });
+    };
 
     return (
-        <div>
-            <Container className="me-auto">
-
-                <Image src={imgUrl} rounded width={"30px"} height={"30px"} fluid></Image>
-
-                <span>{ime}</span>
-
-                {user.button ? <Button height={"10%"} onClick={signInWithGoogle}>LogIn</Button> :
-                    <Button onClick={signOutWithGoogle}>LogOut</Button>}
-
+        <>
+            <Container fluid>
+                <Row xs="auto" className="align-items-center">
+                    <Col>
+                        <Image src={imgUrl} rounded width={"30px"} height={"30px"} fluid></Image>
+                    </Col>
+                    <Col>
+                        {ime}
+                    </Col>
+                    <Col>
+                        {user.button ? <Button height={"10%"} onClick={signInWithGoogle} size="sm">LogIn</Button> :
+                            <Button onClick={cliclkHandler} size="sm" variant="dark">LogOut</Button>}
+                    </Col>
+                </Row>
+                <MyVerticallyCenteredModal show={modalShow.showModal} onHide={() => setModalShow(prevModalShow => { return ({ showModal: false }) })} />
             </Container>
-        </div>
+        </>
     );
 };
+
+function MyVerticallyCenteredModal(props) {
+    return (
+        <Modal
+            {...props
+            }
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+        >
+            <Modal.Header>
+                <Modal.Title id="contained-modal-title-vcenter">
+                    Odjava uspešna!
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Footer>
+                <Button onClick={props.onHide}>Close</Button>
+            </Modal.Footer>
+        </Modal>
+    );
+}
 
 /*
 export  const signInWithGoogle = () => {
