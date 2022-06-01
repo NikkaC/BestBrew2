@@ -14,7 +14,8 @@ CREATE TABLE pivo (
     pena INT,
     okus INT,
     vonj INT,
-    crtna_koda BIGINT
+    crtna_koda BIGINT,
+    imgurl VARCHAR(256)
 );
 
 CREATE TABLE uporabnik (
@@ -92,7 +93,7 @@ VALUES  (1),
         (9),
         (10);
 
-INSERT INTO pivo (tk_pivovarna, naziv, alkohol, vrsta, pena, okus, vonj, crtna_koda)
+INSERT INTO pivo (tk_pivovarna, naziv, alkohol, vrsta, pena, okus, vonj, crtna_koda, imgurl)
 VALUES  (1, 'Union Nefiltrirano', 'alkoholno', 'nefiltrirano', 3, 3, 4, 87267),
         (1, 'Union brezalkoholno', 'brezalkoholno', 'svetlo', 2, 2, 3, 83782),
         (3, 'Zlatorog', 'alkoholno', 'svetlo', 3, 5, 3, 52938),
