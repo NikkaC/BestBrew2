@@ -4,6 +4,8 @@ import React, { Fragment, useState } from "react";
 import Image from 'react-bootstrap/Image'
 import { Container, Button, Modal, Row, Col } from 'react-bootstrap';
 
+import $ from 'jquery';
+
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 //import { LoginZaProps } from "./logInOut";
 //import { propTypes } from "react-barcode";
@@ -54,6 +56,7 @@ export function LogIn2({ imageDef, imeDef, buttonDef, func }) {
     const [user, setUser] = useState({ ime: imeDef, img: imageDef, button: buttonDef });
     const ime = user.ime;
     const imgUrl = user.img;
+    const id = user.id;
     //const button = user.button
 
 
@@ -64,18 +67,44 @@ export function LogIn2({ imageDef, imeDef, buttonDef, func }) {
             const email = results.user.email;
             const img = results.user.photoURL;
             localStorage.setItem("email", email)
-            func(ime)
-            console.log(results.user);
-            console.log(results.user.refreshToken);
-            setUser(prevUser => {
-                return ({ ime: prevUser.ime = ime, img: prevUser.img = img, button: prevUser.button = false });
+
+            let razdelitev = ime.split(" ");
+
+            let uporabnikJSON = { "ime": razdelitev[0], "priimek": razdelitev[1], "email": email };
+
+            shraniUporabnika(uporabnikJSON).then(response => {
+
+                console.log(JSON.parse(sessionStorage.getItem("prijavljenUporabnik")));
+
+                func(ime)
+                console.log(results.user);
+                console.log(results.user.refreshToken);
+                setUser(prevUser => {
+                    return ({ ime: prevUser.ime = ime, img: prevUser.img = img, button: prevUser.button = false });
+                });
             });
-
-
         }).catch((err) => {
             console.log(err);
         });
     };
+
+    const shraniUporabnika = (podatki) => {
+        return $.ajax({
+            url: "http://localhost:5001/shraniUporabnika",
+            type: 'POST',
+            dataType: 'json',
+            data: JSON.parse(JSON.stringify(podatki)),
+            crossDomain: true,
+            context: document.body,
+            success: function (data, status) {
+                console.log("Ajax poizvedba deluje!");
+                sessionStorage.setItem("prijavljenUporabnik", JSON.stringify(data));
+            },
+            error: function(xhr, status, error) {
+                console.log(error);
+            }
+        })
+    }
 
     const signOutWithGoogle = () => {
         signOut(auth).then(() => {
@@ -132,6 +161,8 @@ export function LogIn2({ imageDef, imeDef, buttonDef, func }) {
 };
 
 function MyVerticallyCenteredModal(props) {
+
+
     return (
         <Modal
             {...props
@@ -142,7 +173,7 @@ function MyVerticallyCenteredModal(props) {
         >
             <Modal.Header>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    Odjava uspešna!
+                    Odjavljeni ste!
                 </Modal.Title>
             </Modal.Header>
             <Modal.Footer>

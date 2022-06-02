@@ -11,6 +11,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 const Pool = require("pg").Pool;
 const serverless = require("serverless-http");
+const fs = require('fs');
+
+let poizvedbaSQL = fs.readFileSync(__dirname + '/baza.sql').toString();
 
 //--------CONFIG ZA POVEZAVO PREKO URI-------
 const proConfig = {
@@ -21,6 +24,23 @@ const proConfig = {
 }
 //-------------Spremenljivka-----------------
 const pool = new Pool(proConfig);
+
+/*
+pool.connect(function(err, client, done) {
+    if(err) {
+      console.log(err);
+      process.exit(1);
+    }
+    client.query(poizvedbaSQL, function(err, result) {
+        done();
+        if(err) {
+          console.log(err);
+          process.exit(1);
+        }
+        process.exit(0);
+    });
+});
+*/
 
 app.use(cors({
   origin: '*'
@@ -82,17 +102,6 @@ app.get("/vsaPriljubljenaPiva/:idUporabnik", async (req, res) => {
   }
 });
 
-//----------Doda enega uporabnika------------
-app.post("/dodajUporabnika", async (req, res) => {
-  const {ime,priimek,email} = req.body
-
-  pool.query('INSERT INTO uporabnik (ime,priimek,email) VALUES ($1, $2, $3)', [ ime, priimek,email], (error, results) => {
-    if (error) {
-      throw error
-    }
-    res.status(201).send(`Uporabnik added`)
-  })
-});
 //-------------Doda eno pivo---------------
 app.post("/dodajPivo", async (req, res) => {
   const {tk_pivovarna,naziv, alkohol,vrsta,pena,okus,vonj,crtna_koda } = req.body
@@ -112,6 +121,40 @@ app.get("/map", async (req, res) => {
         res.json(vsePivovarne.rows);
     } catch (err) {
         console.error(err.message);
+    }
+});
+
+//-----------------Shrani uporabnika v bazo
+app.post("/shraniUporabnika", async (req, res) => {  
+  try {
+    let seNeObstaja = true;
+    
+    const {ime, priimek, email} = req.body;
+
+      const vsiUporabniki = await pool.query("SELECT * FROM uporabnik;");
+      vsiUporabniki.rows.forEach((uporabnik) => {
+        if(ime == uporabnik.ime && priimek == uporabnik.priimek && email == uporabnik.email) {
+          // uporabnik je že v bazi, funkcija vrne že obstoječega uporabnika
+          console.log("Uporabnik je ze obstajal v podatkovni bazi.");
+          res.json(uporabnik);
+          seNeObstaja = false;
+        }
+      });
+
+      // uporabnik v bazi še ne obstaja, uporabnika zapišemo v bazo in vrnemo njegov id
+      if(seNeObstaja) {
+        console.log("Uporabnik se ni obstajal v podatkovni bazi.");
+        pool.query('INSERT INTO uporabnik (ime, priimek, email) VALUES ($1, $2, $3);', [ime, priimek, email], (error, response) => {
+          if(error) {
+            throw error;
+          }
+        });
+        const kreiranUporabnik = await pool.query("SELECT * FROM uporabnik WHERE uporabnik.email = $1;", email);
+        res.json(kreiranUporabnik);
+      }
+
+    } catch(error) {
+      console.error(error.message);
     }
 });
 
