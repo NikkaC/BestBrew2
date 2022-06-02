@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import Image from 'react-bootstrap/Image'
 import { Container, Button, Modal, Row, Col } from 'react-bootstrap';
 
@@ -10,7 +10,8 @@ import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/
 //import { LoginZaProps } from "./logInOut";
 //import { propTypes } from "react-barcode";
 
-
+import BDBBtn, { MDBBtn } from 'mdbreact'
+import 'mdb-ui-kit/css/mdb.min.css';
 
 
 const firebaseConfig = {
@@ -147,8 +148,10 @@ export function LogIn2({ imageDef, imeDef, buttonDef, func }) {
                         {ime}
                     </Col>
                     <Col>
-                        {user.button ? <Button height={"10%"} onClick={signInWithGoogle} size="sm">LogIn</Button> :
-                            <Button onClick={cliclkHandler} size="sm" variant="dark">LogOut</Button>}
+                        <Fragment>
+                            {user.button ? <MDBBtn color="success" height={"10%"} onClick={signInWithGoogle} size="sm">LogIn</MDBBtn> :
+                                <MDBBtn onClick={cliclkHandler} size="sm" color="info">LogOut</MDBBtn>}
+                        </Fragment>
                     </Col>
                 </Row>
                 <MyVerticallyCenteredModal show={modalShow.showModal} onHide={() => setModalShow(prevModalShow => { return ({ showModal: false }) })} />

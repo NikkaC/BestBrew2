@@ -24,6 +24,29 @@
   color: white;
 }
 
+.marginTop {
+  margin-top: 2.5%;
+}
+
+.marginTopRight {
+  margin-top: 2.5%;
+  margin-right: 5%;
+}
+
+.marginAll {
+  margin-top: 5%;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+}
+
+.marginTopMap {
+  margin-top: 4%;
+}
+
+.marginTopMojaPiva {
+  margin-top: 6%;
+}
+
 .App-link {
   color: #61dafb;
 }

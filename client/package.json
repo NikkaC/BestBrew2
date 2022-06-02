@@ -16,6 +16,7 @@
     "framer-motion": "^6.3.5",
     "jquery": "^3.6.0",
     "leaflet": "^1.7.0",
+    "mdb-ui-kit": "^4.1.0",
     "mdbreact": "^4.6.1",
     "pg": "^8.7.3",
     "react": "16.14",
