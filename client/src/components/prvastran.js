@@ -10,8 +10,8 @@ import { Link } from 'react-router-dom';
 
 import { motion } from 'framer-motion/dist/framer-motion';
 
-import * as mdb from 'mdb-ui-kit';
-import 'mdb-ui-kit/css/mdb.min.css';
+import BDBBtn from 'mdbreact'
+import BackgroundIMG from './StylingZaStran/backgroundIMG';
 
 function PrvaStran() {
   return (
@@ -20,6 +20,7 @@ function PrvaStran() {
       animate={{ opacity: 1, transition: { duration: 0.5 } }}
       exit={{ opacity: 0, transition: { duration: 0.1 } }}
     >
+      <BackgroundIMG />
       <Container fluid style={{margin: "0.5%", width: "97%"}}>
 
         <Row className="align-items-center justify-content-center " style={{margin: "0.5%"}}>

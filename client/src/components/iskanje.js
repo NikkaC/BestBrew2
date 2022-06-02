@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Card, Button, Container, ListGroup, CardGroup, Form } from "react-bootstrap";
 import mojaPiva from './mojaPiva'
+import '../App.css'
 import '../styles/iskanje.css';
 import 'mdbreact/dist/css/mdb.css'
 import axios from 'axios';
 import { motion } from 'framer-motion/dist/framer-motion';
 var Barcode = require('react-barcode');
-
 
 
 /*
@@ -44,9 +44,12 @@ export default function Iskanje() {
 
 
   return (
-    <>
+    <motion.div className="marginTopRight"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, transition: { duration: 0.5 } }}
+      exit={{ opacity: 0, transition: { duration: 0.1 } }}>
       <SearchChange piva={piva} />
-    </>
+    </motion.div>
   )
 }
 
@@ -70,7 +73,7 @@ function SearchChange({ piva }) {
 
   return (
     <motion.div
-      initial={{  width: 0 }}
+      initial={{ width: 0 }}
       animate={{ width: window.innerWidth }}
       exit={{ x: window.innerWidth, transition: { duration: 0.1 } }}
     >
@@ -102,13 +105,13 @@ function SearchChange({ piva }) {
               </ListGroup>
               <Button variant="primary">Več</Button>
               <Button variant="primary" id="mojaPivaShrani"
-      onClick={() => setMojaPiva([...new Set([pivo])])}
-    >
-      Dodaj med priljubljene
-      
-      </Button>
+                onClick={() => setMojaPiva([...new Set([pivo])])}
+              >
+                Dodaj med priljubljene
 
-      <mojaPiva likedPiva={mojaPiva.likedPiva} /> 
+              </Button>
+
+              <mojaPiva likedPiva={mojaPiva.likedPiva} />
             </Card.Body>
           </Card>
 

@@ -1,9 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
+import { Navbar, Container, Nav, NavDropdown, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import "../styles/navbar.css";
 import "./GoogleAuth/ageAuthPopUp.css";
-
+import pivo from './Slike/BESTBREW.png';
 
 import React from "react";
 
@@ -18,7 +18,7 @@ function NavB({ image, ime, button, dataPull }) {
 
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="light" expand="lg" fixed='top'>
       <Container>
         <Navbar.Brand><Link to="/" className='navText'><b>Best Brew</b></Link> </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
