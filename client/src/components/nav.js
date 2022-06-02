@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import "../styles/navbar.css";
 import "./GoogleAuth/ageAuthPopUp.css";
 import pivo from './Slike/BESTBREW.png';
+import navlogo from './Slike/navlogo.png';
 
 import React from "react";
 
@@ -20,7 +21,7 @@ function NavB({ image, ime, button, dataPull }) {
   return (
     <Navbar bg="light" expand="lg" fixed='top'>
       <Container>
-        <Navbar.Brand><Link to="/" className='navText'><b>Best Brew</b></Link> </Navbar.Brand>
+        <Navbar.Brand><Link to="/" className='navText'><Image src={navlogo} roundedCircle width="26"/><b>BestBrew</b></Link> </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">

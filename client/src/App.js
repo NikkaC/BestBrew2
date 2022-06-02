@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import AgeAuthPopUp from './components/GoogleAuth/ageAuth';
 import AnimacijaStrani from './components/animation';
 import Polnoletnost from './components/GoogleAuth/ageAuth';
+import Footer from './components/footer'
 
 
 
@@ -29,6 +30,8 @@ function App() {
       <NavB image={defaultImg} ime={defIme} button={defButton} dataPull={getData} />
       <AnimacijaStrani />
       <Polnoletnost />
+      <Footer />
+
     </>
   )
 }
