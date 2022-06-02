@@ -4,11 +4,14 @@ import '../styles/prvastran.css';
 import pivo from './Slike/BESTBREW.png';
 import Image from 'react-bootstrap/Image'
 import { Container, Card, Button, Row, Col } from 'react-bootstrap';
+import "./GoogleAuth/ageAuthPopUp.css";
 
 import { Link } from 'react-router-dom';
 
 import { motion } from 'framer-motion/dist/framer-motion';
 
+import * as mdb from 'mdb-ui-kit';
+import '~mdb-ui-kit/css/mdb.min.css';
 
 function PrvaStran() {
   return (
@@ -17,9 +20,9 @@ function PrvaStran() {
       animate={{ opacity: 1, transition: { duration: 0.5 } }}
       exit={{ opacity: 0, transition: { duration: 0.1 } }}
     >
-      <Container fluid>
+      <Container fluid style={{margin: "0.5%", width: "97%"}}>
 
-        <Row className="align-items-center justify-content-center ">
+        <Row className="align-items-center justify-content-center " style={{margin: "0.5%"}}>
           <Col md >
             <Card className="text-center">
               <Card.Body style={{ color: "primary" }}>
@@ -32,7 +35,7 @@ function PrvaStran() {
             </Card>
           </Col>
         </Row>
-        <Row className="align-items-center justify-content-center ">
+        <Row className="align-items-center justify-content-center " style={{margin: "0.5%"}}>
           <Col md>
             <Card>
               <Card.Body style={{ color: "primary" }}>
@@ -55,7 +58,7 @@ function PrvaStran() {
                 <center>
                   <Card.Text>
                     <p class="textd">Prični svojo pivsko doživetje s klikom enega gumba.</p>
-                    <Button><Link to="/iskanje" style={{color: "black"}}><b>Poišči svojo najljubše pivo</b></Link></Button>
+                    <Button><Link to="/iskanje" className='navText'><b>Poišči svojo najljubše pivo</b></Link></Button>
                   </Card.Text>
                 </center>
               </Card.Body>

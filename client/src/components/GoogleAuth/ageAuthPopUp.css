@@ -1,3 +1,14 @@
+.navText {
+  color: rgb(111, 111, 111)
+}
+
+
+
+
+
+
+
+
 .Background {
     width: 100vw;
     height: 100vh;
@@ -68,3 +79,4 @@
   #cancelBtn {
     background-color: crimson;
   }
+

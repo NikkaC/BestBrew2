@@ -2,6 +2,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import "../styles/navbar.css";
+import "./GoogleAuth/ageAuthPopUp.css";
+
 
 import React from "react";
 
@@ -18,14 +20,14 @@ function NavB({ image, ime, button, dataPull }) {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <Navbar.Brand><Link to="/" style={{}}><b>Best Brew</b></Link> </Navbar.Brand>
+        <Navbar.Brand><Link to="/" className='navText'><b>Best Brew</b></Link> </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link><Link to="/iskanje">Iskanje piv</Link>  </Nav.Link>
-            <Nav.Link><Link to="/mojepive">Moja piva</Link>    </Nav.Link>
-            <Nav.Link><Link to="/map">Zemljevid</Link>    </Nav.Link>
-            <Nav.Link><Link to="/onas">O nas</Link>    </Nav.Link>
+            <Nav.Link><Link to="/iskanje" className='navText'>Iskanje piv</Link>  </Nav.Link>
+            <Nav.Link><Link to="/mojepive" className='navText'>Moja piva</Link>    </Nav.Link>
+            <Nav.Link><Link to="/map" className='navText'>Zemljevid</Link>    </Nav.Link>
+            <Nav.Link><Link to="/onas" className='navText'>O nas</Link>    </Nav.Link>
 
           </Nav>
         </Navbar.Collapse>
