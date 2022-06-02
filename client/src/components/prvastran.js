@@ -6,12 +6,18 @@ import Image from 'react-bootstrap/Image'
 import { Container, Card, Button, Row, Col } from 'react-bootstrap';
 import "./GoogleAuth/ageAuthPopUp.css";
 
+import pivo4 from './Slike/SlideShow3.jpg';
+import pivo3 from './Slike/SlideShow2.jpg';
+
 import { Link } from 'react-router-dom';
 
 import { motion } from 'framer-motion/dist/framer-motion';
 
-import BDBBtn from 'mdbreact'
 import BackgroundIMG from './StylingZaStran/backgroundIMG';
+import BackgroundIMG2 from './StylingZaStran/backgroundIMG2';
+import BackgroundIMG3 from './StylingZaStran/bacgroundIMG3';
+import SlideShow from './SlideShowBeer';
+import { MDBBtn } from 'mdbreact';
 
 function PrvaStran() {
   return (
@@ -21,9 +27,9 @@ function PrvaStran() {
       exit={{ opacity: 0, transition: { duration: 0.1 } }}
     >
       <BackgroundIMG />
-      <Container fluid style={{margin: "0.5%", width: "97%"}}>
+      <Container fluid style={{ margin: "0.5%", width: "97%" }}>
 
-        <Row className="align-items-center justify-content-center " style={{margin: "0.5%"}}>
+        <Row className="align-items-center justify-content-center " style={{ margin: "0.5%" }}>
           <Col md >
             <Card className="text-center">
               <Card.Body style={{ color: "primary" }}>
@@ -36,7 +42,12 @@ function PrvaStran() {
             </Card>
           </Col>
         </Row>
-        <Row className="align-items-center justify-content-center " style={{margin: "0.5%"}}>
+      </Container>
+
+      <BackgroundIMG2 />
+
+      <Container fluid style={{ margin: "0.5%", width: "97%" }}>
+        <Row className="align-items-center justify-content-center " style={{ margin: "0.5%" }}>
           <Col md>
             <Card>
               <Card.Body style={{ color: "primary" }}>
@@ -52,23 +63,38 @@ function PrvaStran() {
               </Card.Body>
             </Card>
           </Col>
-          
+          <Col md>
+            <Card>
+              <Card.Img src={pivo4} />
+            </Card>
+          </Col>
+        </Row>
+
+      </Container>
+
+      <BackgroundIMG3 />
+
+      <Container fluid style={{ margin: "0.5%", width: "97%" }}>
+
+        <Row className="align-items-center justify-content-center " style={{ margin: "0.5%" }}>
+          <Col md>
+            <Card.Img src={pivo3} />
+          </Col>
           <Col md>
             <Card className="bg-dark text-white">
               <Card.Body style={{ color: "dark" }}>
                 <center>
                   <Card.Text>
                     <p class="textd">Prični svojo pivsko doživetje s klikom enega gumba.</p>
-                    <Button><Link to="/iskanje" className='navText'><b>Poišči svojo najljubše pivo</b></Link></Button>
+                    <Link to="/iskanje"><MDBBtn><b>Poišči svojo najljubše pivo</b></MDBBtn></Link>
                   </Card.Text>
                 </center>
               </Card.Body>
             </Card>
           </Col>
         </Row>
-
       </Container>
-    </motion.div>
+    </motion.div >
   );
 }
 

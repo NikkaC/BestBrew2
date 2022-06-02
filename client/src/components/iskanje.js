@@ -77,48 +77,51 @@ function SearchChange({ piva }) {
       animate={{ width: window.innerWidth }}
       exit={{ x: window.innerWidth, transition: { duration: 0.1 } }}
     >
-      <br />
-      <center>
-        <label class="naslov">Išči po imenu piva</label><br />
-        <div class="form__group">
-          <input class="form__input" type='text' placeholder="Vnesi ime piva" onChange={handleChange} />
-          <label for="name" class="form__label">Rezultati iskanja</label>
-        </div>
-      </center>
-      <br />
-
-      <CardGroup>
-        {piva.filter(pivo => pivo.naziv.toLocaleLowerCase().includes(search)).map(pivo => (
+      <Container className="marginTopMojaPiva">
+        <center>
+          <label class="naslov">Išči po imenu piva</label><br />
+          <div class="form__group">
+            <input class="form__input" type='text' placeholder="Vnesi ime piva" onChange={handleChange} />
+            <label for="name" class="form__label">Rezultati iskanja</label>
+          </div>
+        </center>
 
 
-          <Card className="flex-fill m-1" style={{ width: '12rem' }} >
-            <Card.Body>
-              <Card.Title>{pivo.naziv}</Card.Title>
-              <Card.Subtitle>{pivo.naziv_pivovarne}</Card.Subtitle>
-              <ListGroup variant="flush">
-                <ListGroup.Item>{pivo.alkohol}</ListGroup.Item>
-                <ListGroup.Item>{pivo.vrsta}</ListGroup.Item>
-                <ListGroup.Item>Pena: {pivo.pena}</ListGroup.Item>
-                <ListGroup.Item>Okus: {pivo.okus}</ListGroup.Item>
-                <ListGroup.Item>Vonj: {pivo.vonj}</ListGroup.Item>
-                <Barcode value={pivo.crtna_koda} />,
-              </ListGroup>
-              <Button variant="primary">Več</Button>
-              <Button variant="primary" id="mojaPivaShrani"
-                onClick={() => setMojaPiva([...new Set([pivo])])}
-              >
-                Dodaj med priljubljene
-
-              </Button>
-
-              <mojaPiva likedPiva={mojaPiva.likedPiva} />
-            </Card.Body>
-          </Card>
+        <CardGroup>
+          {piva.filter(pivo => pivo.naziv.toLocaleLowerCase().includes(search)).map(pivo => (
 
 
-        )
-        )}
-      </CardGroup>
+            <Card className="flex-fill m-1" style={{ width: '12rem' }} >
+              <Card.Body>
+                <Card.Title>{pivo.naziv}</Card.Title>
+                <Card.Subtitle>{pivo.naziv_pivovarne}</Card.Subtitle>
+                <ListGroup variant="flush" >
+                  <ListGroup.Item>{pivo.alkohol}</ListGroup.Item>
+                  <ListGroup.Item>{pivo.vrsta}</ListGroup.Item>
+                  <ListGroup.Item>Pena: {pivo.pena}</ListGroup.Item>
+                  <ListGroup.Item>Okus: {pivo.okus}</ListGroup.Item>
+                  <ListGroup.Item>Vonj: {pivo.vonj}</ListGroup.Item>
+                </ListGroup>
+
+
+                <Barcode value={pivo.crtna_koda} />
+                <Button variant="primary">Več</Button>
+                <Button variant="primary" id="mojaPivaShrani"
+                  onClick={() => setMojaPiva([...new Set([pivo])])}
+                >
+                  Dodaj med priljubljene
+
+                </Button>
+
+                <mojaPiva likedPiva={mojaPiva.likedPiva} />
+              </Card.Body>
+            </Card>
+
+
+          )
+          )}
+        </CardGroup>
+      </Container>
     </motion.div>
   )
 }

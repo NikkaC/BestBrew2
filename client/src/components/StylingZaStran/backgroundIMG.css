@@ -6,3 +6,19 @@
     background-size: cover;
     margin-top: 2.5%;
 }
+
+.BGIMG2 {
+    background-image: url("../Slike/OdzadjeTocena.jpg");
+    height: 60vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.BGIMG3 {
+    background-image: url("../Slike/OdzadjeTocena2.jpg");
+    height: 60vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
