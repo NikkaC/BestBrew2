@@ -76,13 +76,13 @@ VALUES  ('Jože', 'Gorišek', 'joze.gorisek@gmail.com', 'slika1'),
         ('Fredi', 'Miler', 'fredi.miler@gmail.com', 'slika10');
 
 INSERT INTO pivovarna (naziv_pivovarne, x_koordinata, y_koordinata)
-VALUES  ('Union', 430, 377),
-        ('Heineken', 390, 580),
-        ('Laško', 441, 380),
-        ('Staropramen', 478, 499),
-        ('Carlsberg', 444, 555),
-        ('Guinness', 439, 12),
-        ('Green Golden Brewing', 447, 520);
+VALUES  ('Union', 46.06004, 14.49846),
+        ('Heineken', 52.35915, 4.89175),
+        ('Laško', 46.16227, 15.23878),
+        ('Staropramen', 50.06850, 14.40663),
+        ('Carlsberg', 55.66705, 12.52858),
+        ('Guinness', 53.34357, -6.28704),
+        ('Green Golden Brewing', 46.2662, 15.1149);
 
 INSERT INTO seznam_piva (tk_uporabnik)
 VALUES  (1),
