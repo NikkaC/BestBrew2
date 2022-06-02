@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion/dist/framer-motion';
 
 import * as mdb from 'mdb-ui-kit';
-import '~mdb-ui-kit/css/mdb.min.css';
+import 'mdb-ui-kit/css/mdb.min.css';
 
 function PrvaStran() {
   return (
