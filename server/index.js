@@ -157,6 +157,18 @@ app.post("/shraniUporabnika", async (req, res) => {
       console.error(error.message);
     }
 });
+//---------------Brisanje PIVA iz seznama-------------
+app.delete("/odstraniPivoSseznama/:idPivo/:idSeznam", async (req, res) => {
+  const idPivo = parseInt(req.params.idPivo)
+  const idSeznam = parseInt(req.params.idSeznam)
+  try {
+    await pool.query("DELETE FROM priljubljeno_pivo WHERE tk_pivo = $1 AND tk_seznam_piva = $2;", [idPivo,idSeznam], );
+    res.send("DELETE PIVA");
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
 
 app.listen(5001, () => {
     console.log(`Listening on port ${port}`);

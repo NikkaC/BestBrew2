@@ -9,6 +9,8 @@ const ratingChanged = (newRating) => {
   console.log(newRating)
 }
 
+
+
 export default class SeznamPriljubljenihPiv extends React.Component {
   state = {
     piva: [],
@@ -16,7 +18,8 @@ export default class SeznamPriljubljenihPiv extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`http://localhost:5001/vsaPriljubljenaPiva/1`)
+    const idUporabnika=JSON.parse(sessionStorage.getItem("prijavljenUporabnik")).iduporabnik;
+    axios.get(`http://localhost:5001/vsaPriljubljenaPiva/${idUporabnika}`)
       .then(res => {
         const piva = res.data;
         const vsiIDs = piva.map(pivo => pivo.idseznam_piva);
@@ -25,7 +28,11 @@ export default class SeznamPriljubljenihPiv extends React.Component {
       })
   }
 
-
+  handleOdstraniPivo(idpivo,idseznam) {
+    console.log(idpivo);
+    console.log(idseznam);
+    axios.delete(`http://localhost:5001/odstraniPivoSseznama/${idpivo}/${idseznam}`)
+  }
 
  
   render() {
@@ -45,7 +52,7 @@ export default class SeznamPriljubljenihPiv extends React.Component {
                             <>
                             <ListGroup.Item>{filteredPivo.naziv}</ListGroup.Item>
                             <ListGroup.Item> <p>Oceni pivo</p> <ReactStars count={5} onChange={ratingChanged} size={40} color2={'#ffd700'} /></ListGroup.Item>
-                            <Button variant="warning">Odstrani</Button>
+                            <Button variant="warning" onClick={this.handleOdstraniPivo(filteredPivo.idpivo,unique)}>Odstrani</Button>
                             </>
                             ))}
                         </ListGroup>
