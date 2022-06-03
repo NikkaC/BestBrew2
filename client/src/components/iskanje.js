@@ -120,7 +120,6 @@ function SearchChange({ piva }) {
       <ToastContainer />
       <Container className="marginTopMojaPiva">
         <center>
-          <label class="naslov">Išči po imenu piva</label><br />
           <div class="form__group">
             <input class="form__input" type='text' placeholder="Vnesi ime piva" onChange={handleChange} />
             <label for="name" class="form__label">Rezultati iskanja</label>
