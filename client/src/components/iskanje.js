@@ -139,6 +139,7 @@ function SearchChange({ piva }) {
 
             <Card className="flex-fill m-1" style={{ width: '12rem' }} >
               <Card.Body>
+                <Card.Img variant="top" className="cssPivo" src={pivo.imgurl} />
                 <Card.Title>{pivo.naziv}</Card.Title>
                 <Card.Subtitle>{pivo.naziv_pivovarne}</Card.Subtitle>
                 <ListGroup variant="flush" >

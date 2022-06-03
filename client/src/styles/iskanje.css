@@ -6,6 +6,12 @@
       
 }
 
+img.cssPivo {
+  width: 100%;
+  height: auto;
+  object-fit:scale-down;
+  max-height: 30vh;
+}
 
 .naslov {
 

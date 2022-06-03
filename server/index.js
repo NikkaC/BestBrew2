@@ -53,7 +53,7 @@ app.get("/test", async (req, res) => {
 //-------------VRAČA VSA PIVA-----------------
 app.get("/Vsapiva", async (req, res) => {
     try {
-      const vsaPiva = await pool.query("SELECT idPivo,naziv,naziv_pivovarne,alkohol,vrsta,pena,okus,vonj,crtna_koda FROM pivo LEFT JOIN pivovarna ON pivo.tk_pivovarna=pivovarna.idPivovarna;");
+      const vsaPiva = await pool.query("SELECT pivo.*,naziv_pivovarne FROM pivo LEFT JOIN pivovarna ON pivo.tk_pivovarna=pivovarna.idPivovarna;");
       res.json(vsaPiva.rows);
     } catch (err) {
       console.error(err.message);
