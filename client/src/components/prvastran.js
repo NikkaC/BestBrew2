@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/prvastran.css';
 import pivo from './Slike/BESTBREW.png';
@@ -19,7 +19,32 @@ import BackgroundIMG3 from './StylingZaStran/bacgroundIMG3';
 import SlideShow from './SlideShowBeer';
 import { MDBBtn } from 'mdbreact';
 
+import Popup from 'reactjs-popup';
+import facts from './funfacts'
+import 'reactjs-popup/dist/index.css';
+
 function PrvaStran() {
+
+  const [visible, setVisible] = useState(false)
+
+  const getRandomFact = () => {
+    return facts[Math.floor(Math.random() * facts.length)];
+  };
+
+  const [funFacts, setFunFacts] = useState(getRandomFact());
+  const handleClick = () => {
+    // shuffle array and pick random
+    const randomFact = getRandomFact();
+    setFunFacts(randomFact);
+  };
+
+
+  
+  const pStyle = {
+    textAlign: 'center'
+  }
+  
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -37,6 +62,11 @@ function PrvaStran() {
                   <h1>BESTBREW</h1>
                   <p class=" text-center, fw-bold, glavnoText">Za vse prave ljublitelje piv.</p>
                 </Card.Text>
+      <Popup trigger={<Button onClick={handleClick}> Klikni za naključni "fun fact" o pivih</Button>} position="right center">
+    <div>{funFacts}</div>
+  </Popup>
+      <br/>
+      {console.log(funFacts)}
                 <Image src={pivo}></Image>
               </Card.Body>
             </Card>
@@ -54,6 +84,7 @@ function PrvaStran() {
                 <Card.Header><h2>Nekaj o spletni strani in kaj tukaj najdete.</h2></Card.Header>
                 <Card.Text>
                   <p class="glavni">
+
                     Radi pogosto zavijete po napornem dnevu v gostilno? Imate radi pijačo narejeno iz hmelja po imenu pivo?<br />
                     Potem je ta stran prava za vas!<br />
                     Ocenjujte piva ter si ustvarite vaš lasten nabor najljubših piv.<br />
