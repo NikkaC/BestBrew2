@@ -64,7 +64,7 @@ ALTER TABLE pivo ADD CONSTRAINT tk_pivo_pivovarna FOREIGN KEY (tk_pivovarna) REF
 
 
 INSERT INTO uporabnik (ime, priimek, email, slika)
-VALUES  ('Jože', 'Gorišek', 'joze.gorisek@gmail.com', 'slika1'),
+VALUES  ('Matic', 'Absec', 'absec.matic@gmail.com', 'slika1'),
         ('Buba', 'Corelli', 'imperia@gmail.com', 'slika2'),
         ('Jala', 'Brat', 'jala.brat@gmail.com', 'slika3'),
         ('Alfi', 'Nipič', 'alfi.nipic@gmail.com', 'slika4'),
