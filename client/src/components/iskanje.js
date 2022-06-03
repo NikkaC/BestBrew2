@@ -1,5 +1,5 @@
 import React, { Component, useState, useEffect } from "react";
-import { Card, Button, Container, ListGroup, CardGroup, Form } from "react-bootstrap";
+import { Card, Button, Container, ListGroup, CardGroup, DropdownButton,Dropdown,Toast} from "react-bootstrap";
 import { ReactDOM } from "react";
 import mojaPiva from './mojaPiva'
 import Modal from "./modal";
@@ -8,6 +8,8 @@ import '../styles/iskanje.css';
 import 'mdbreact/dist/css/mdb.css'
 import axios from 'axios';
 import { motion } from 'framer-motion/dist/framer-motion';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 var Barcode = require('react-barcode');
 
 
@@ -25,27 +27,19 @@ const handleOnSearch = (string, results) => {
 
 export default function Iskanje() {
 
-
-
-
   const [piva, setPiva] = useState([])
 
   useEffect(() => {
     axios.get(`http://localhost:5001/Vsapiva`)
       .then(res => {
-
         const piva = res.data;
         setPiva(piva);
       })
+    
+    
   }
+
   );
-
-
-
-
-
-
-
   return (
     <motion.div className="marginTopRight"
       initial={{ opacity: 0 }}
@@ -58,19 +52,51 @@ export default function Iskanje() {
 
 function SearchChange({ piva }) {
 
-  const [search, setSearch] = useState("")
-  useEffect(() => {
-  },
-    [search]);
+  
+  const [search, setSearch] = useState("");
+  const [mojiSeznami, setMojiSeznami] = useState([])
 
+  const [izbraniSeznam,setIzbraniSeznam]=useState(0);
+  
+  const handleSelect=(e)=>{
+    console.log(e);
+    setIzbraniSeznam(e)
+  }
 
-  const [mojaPiva, setMojaPiva] = useState([]);
+  useEffect(() => {},[search]);
+  
+  useEffect(() => {  
+    if(sessionStorage.getItem("prijavljenUporabnik")!=null){ 
+      const idUporabnika=JSON.parse(sessionStorage.getItem("prijavljenUporabnik")).iduporabnik;
+      
+      axios.get(`http://localhost:5001/seznamiUporabnikov/${idUporabnika}`)
+        .then(res => {
+          const mojiSeznami = res.data;
+          setMojiSeznami(mojiSeznami);
+        })
+    }
+    });
 
   const [prikaz, setPrikaz] = useState(false);
+
 
   const handleChange = (event) => {
     setSearch(event.target.value.toLocaleLowerCase());
   };
+
+  const notify = () => toast.success("Tega boš mogu spit🍺");
+  
+  const handleDodajPivo = (idPivo,idSeznam) => {
+    
+    console.log("idPivo: "+idPivo);
+    console.log("izbraniSeznam: "+izbraniSeznam);
+
+    axios.get(`http://localhost:5001/dodajPivoNaSeznam/${idPivo}/${idSeznam}`)
+    .then(res => {
+      console.log(res);
+    })
+    notify();
+  }; 
 
   // prikaz oziroma skrivanje modala
   const prikazi = () => {
@@ -81,7 +107,9 @@ function SearchChange({ piva }) {
     setPrikaz(false);
   }
 
-  console.log(mojaPiva);
+
+  
+
 
   return (
     <motion.div
@@ -89,6 +117,7 @@ function SearchChange({ piva }) {
       animate={{ width: window.innerWidth }}
       exit={{ x: window.innerWidth, transition: { duration: 0.1 } }}
     >
+      <ToastContainer />
       <Container className="marginTopMojaPiva">
         <center>
           <label class="naslov">Išči po imenu piva</label><br />
@@ -119,18 +148,26 @@ function SearchChange({ piva }) {
                   <ListGroup.Item>Pena: {pivo.pena}</ListGroup.Item>
                   <ListGroup.Item>Okus: {pivo.okus}</ListGroup.Item>
                   <ListGroup.Item>Vonj: {pivo.vonj}</ListGroup.Item>
+                 
                 </ListGroup>
 
 
                 <Barcode value={pivo.crtna_koda} />
-                <Button variant="primary">Več</Button>
-                <Button variant="primary" id="mojaPivaShrani"
-                  onClick={() => setMojaPiva([...new Set([pivo])])}
-                >
-                  Dodaj med priljubljene
-
-                </Button>
-
+                <div className="d-grid">
+                  <DropdownButton  title={"Seznam#"+izbraniSeznam} onSelect={handleSelect}>
+                  
+                    {mojiSeznami.map(seznam =>                  
+                    <Dropdown.Item size="sm" eventKey={seznam.idseznam_piva}>Seznam#{seznam.idseznam_piva}</Dropdown.Item>
+                    
+                      )
+                    } 
+                    
+                  </DropdownButton>
+                  <Button variant="Secondary" id="mojaPivaShrani"
+                    onClick={() => handleDodajPivo(pivo.idpivo,izbraniSeznam)}
+                  >Dodaj
+                  </Button>
+              </div>
                 <mojaPiva likedPiva={mojaPiva.likedPiva} />
               </Card.Body>
             </Card>

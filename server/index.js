@@ -53,7 +53,7 @@ app.get("/test", async (req, res) => {
 //-------------VRAČA VSA PIVA-----------------
 app.get("/Vsapiva", async (req, res) => {
     try {
-      const vsaPiva = await pool.query("SELECT naziv,naziv_pivovarne,alkohol,vrsta,pena,okus,vonj,crtna_koda FROM pivo LEFT JOIN pivovarna ON pivo.tk_pivovarna=pivovarna.idPivovarna;");
+      const vsaPiva = await pool.query("SELECT idPivo,naziv,naziv_pivovarne,alkohol,vrsta,pena,okus,vonj,crtna_koda FROM pivo LEFT JOIN pivovarna ON pivo.tk_pivovarna=pivovarna.idPivovarna;");
       res.json(vsaPiva.rows);
     } catch (err) {
       console.error(err.message);
@@ -161,14 +161,24 @@ app.delete("/odstraniPivoSseznama/:idPivo/:idSeznam", async (req, res) => {
   const idPivo = parseInt(req.params.idPivo)
   const idSeznam = parseInt(req.params.idSeznam)
   try {
-    await pool.query("DELETE FROM priljubljeno_pivo WHERE tk_pivo = $1 AND tk_seznam_piva = $2;", [idPivo,idSeznam], );
-    res.send("DELETE PIVA");
+    await pool.query("DELETE FROM priljubljeno_pivo WHERE tk_pivo = $1 AND tk_seznam_piva = $2;", [idPivo,idSeznam]);
+    res.send("DELETE Piva(ID):"+idPivo+"s seznama(ID):"+idSeznam);
   } catch (err) {
     console.error(err.message);
   }
 });
 
-
+app.get("/dodajPivoNaSeznam/:idPivo/:idSeznam", async (req, res) => {
+  const idPivo = parseInt(req.params.idPivo)
+  const idSeznam = parseInt(req.params.idSeznam)
+  //const idUporabnik = parseInt(req.params.idUporabnik)
+  try {
+    const vsiSeznami = await pool.query("INSERT INTO priljubljeno_pivo (tk_pivo, tk_seznam_piva) VALUES ($1, $2);",[idPivo,idSeznam]);
+    res.send("Dodano Pivo(ID):"+idPivo+"na seznam(ID):"+idSeznam);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
 app.listen(5001, () => {
     console.log(`Listening on port ${port}`);
   });
