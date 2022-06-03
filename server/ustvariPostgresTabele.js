@@ -12,7 +12,7 @@ const Pool = require("pg").Pool;
 
 //--------CONFIG ZA POVEZAVO PREKO URI-------
 const proConfig = {
-  connectionString: "postgres://jzzmbybrrlfzvf:eb31bfd4a0b6b53a56f7b480ccf28b4aa4fda39475fe1765df64e03c33f5bc8d@ec2-176-34-211-0.eu-west-1.compute.amazonaws.com:5432/deqj5mqahdj49p", //geslo,username,database,user
+  connectionString: "postgres://eljaceluwvcisq:e878209cad80cb1c2bb3d63f89cf05a92b587bf00a302c1d5ba770816bc5d0a0@ec2-54-246-185-161.eu-west-1.compute.amazonaws.com:5432/da6r0qs3v9mvs5", //geslo,username,database,user
   ssl: {
     rejectUnauthorized: false
   }

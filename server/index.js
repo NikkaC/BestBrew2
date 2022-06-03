@@ -94,7 +94,7 @@ app.get("/seznamiUporabnikov/:idUporabnik", async (req, res) => {
 app.get("/vsaPriljubljenaPiva/:idUporabnik", async (req, res) => {
   const idUporabnik = parseInt(req.params.idUporabnik)
   try {
-    const vsiSeznami = await pool.query("SELECT pivo.*,idseznam_piva FROM pivo INNER JOIN priljubljeno_pivo ON pivo.idPivo = priljubljeno_pivo.tk_pivo INNER JOIN seznam_Piva ON priljubljeno_pivo.tk_seznam_piva = seznam_Piva.idseznam_piva INNER JOIN uporabnik ON uporabnik.idUporabnik = seznam_Piva.tk_uporabnik WHERE uporabnik.idUporabnik = $1;", [idUporabnik], );
+    const vsiSeznami = await pool.query("SELECT pivo.*,idPriljubljena_piva,idseznam_piva,ocena FROM pivo INNER JOIN priljubljeno_pivo ON pivo.idPivo = priljubljeno_pivo.tk_pivo INNER JOIN seznam_Piva ON priljubljeno_pivo.tk_seznam_piva = seznam_Piva.idseznam_piva INNER JOIN uporabnik ON uporabnik.idUporabnik = seznam_Piva.tk_uporabnik WHERE uporabnik.idUporabnik = $1;", [idUporabnik], );
     res.json(vsiSeznami.rows);
   } catch (err) {
     console.error(err.message);
@@ -179,6 +179,24 @@ app.get("/dodajPivoNaSeznam/:idPivo/:idSeznam", async (req, res) => {
     console.error(err.message);
   }
 });
+
+
+app.get("/posodobiOceno/:event/:idPriljubljenaPiva", async (req, res) => {
+  const oceno = parseInt(req.params.event);
+  const idPriljubljenaPiva =req.params.idPriljubljenaPiva;
+  //const idUporabnik = parseInt(req.params.idUporabnik)
+  try {
+    await pool.query("UPDATE priljubljeno_pivo SET ocena = $1 WHERE idpriljubljena_piva = $2;",[oceno,idPriljubljenaPiva]);
+    res.send("Spremenjena ocena: "+oceno+"na priljublenemu Pivu(ID): "+idPriljubljenaPiva);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+
+
+
+
 app.listen(5001, () => {
     console.log(`Listening on port ${port}`);
   });

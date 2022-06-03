@@ -94,8 +94,8 @@ function SearchChange({ piva }) {
     axios.get(`http://localhost:5001/dodajPivoNaSeznam/${idPivo}/${idSeznam}`)
     .then(res => {
       console.log(res);
+      notify();
     })
-    notify();
   }; 
 
   // prikaz oziroma skrivanje modala
@@ -118,7 +118,7 @@ function SearchChange({ piva }) {
       exit={{ x: window.innerWidth, transition: { duration: 0.1 } }}
     >
       <ToastContainer />
-      <Container className="marginTopMojaPiva">
+      <Container className="center-text">
         <center>
           <div class="form__group">
             <input class="form__input" type='text' placeholder="Vnesi ime piva" onChange={handleChange} />

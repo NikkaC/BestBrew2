@@ -5,8 +5,15 @@ import axios from 'axios';
 
 
 
-const ratingChanged = (newRating) => {
-  console.log(newRating)
+const ratingChanged = (event,idPriljubljenaPiva) => {
+  console.log(event);
+  console.log(idPriljubljenaPiva);
+    // PUT request using axios with error handling
+    const article = { title: 'React PUT Request Example' };
+    axios.get(`http://localhost:5001/posodobiOceno/${event}/${idPriljubljenaPiva}`)
+        .catch(error => {
+            console.error('There was an error!', error);
+        });
 }
 
 
@@ -58,10 +65,9 @@ export default class SeznamPriljubljenihPiv extends React.Component {
                         {
                         this.state.piva.filter(pivo =>pivo.idseznam_piva===unique).map(filteredPivo => (
                             <>
-                            <Card.Img variant="top" src={filteredPivo.imgurl} />
                             <ListGroup.Item>{filteredPivo.naziv}</ListGroup.Item>
                             <ListGroup.Item> <p>Oceni pivo</p> 
-                              	<ReactStars count={5} value={3} half={false} onChange={ratingChanged} size={40} color2={'#ffd700'} />
+                              	<ReactStars count={5} value={filteredPivo.ocena} half={false} onChange={event => ratingChanged(event, filteredPivo.idpriljubljena_piva)} size={40} color2={'#ffd700'} />
                             </ListGroup.Item>
                             <Button variant="warning" onClick={() => { this.handleOdstraniPivo(filteredPivo.idpivo,unique) }}>Odstrani</Button>
                             </>

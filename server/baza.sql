@@ -1,11 +1,11 @@
 DROP VIEW IF EXISTS seznami;
 DROP TABLE IF EXISTS priljubljeno_pivo;
-DROP TABLE IF EXISTS ocena;
-DROP TABLE IF EXISTS priljubljeno_pivo;
-DROP TABLE IF EXISTS pivo;
-DROP TABLE IF EXISTS pivovarna;
 DROP TABLE IF EXISTS seznam_piva;
+DROP TABLE IF EXISTS pivovarna;
 DROP TABLE IF EXISTS uporabnik;
+DROP TABLE IF EXISTS pivo;
+
+
 
 CREATE TABLE pivo (
 	idPivo serial PRIMARY KEY NOT NULL,
@@ -36,14 +36,6 @@ CREATE TABLE pivovarna (
     y_koordinata NUMERIC(5,2)
 );
 
-
-CREATE TABLE ocena (
-	idOcena serial PRIMARY KEY NOT NULL,
-    tk_pivo INT NOT NULL,
-    tk_uporabnik INT NOT NULL,
-    vrednost INT
-);
-
 CREATE TABLE seznam_piva (
 	idSeznam_piva serial PRIMARY KEY NOT NULL,
     tk_uporabnik INT NOT NULL
@@ -52,22 +44,21 @@ CREATE TABLE seznam_piva (
 CREATE TABLE priljubljeno_pivo (
 	idPriljubljena_piva serial PRIMARY KEY NOT NULL,
     tk_pivo INT NOT NULL,
-    tk_seznam_piva INT NOT NULL
+    tk_seznam_piva INT NOT NULL,
+    ocena int 
 );
 
 ALTER TABLE seznam_piva ADD CONSTRAINT tk_seznamPiva_uporabnik FOREIGN KEY (tk_uporabnik) REFERENCES uporabnik(idUporabnik) ON DELETE CASCADE ON UPDATE NO ACTION;
 ALTER TABLE priljubljeno_pivo ADD CONSTRAINT tk_priljubljenoPivo_pivo FOREIGN KEY (tk_pivo) REFERENCES pivo(idPivo) ON DELETE CASCADE ON UPDATE NO ACTION;
 ALTER TABLE priljubljeno_pivo ADD CONSTRAINT tk_priljubljenoPivo_seznamPiva FOREIGN KEY (tk_seznam_piva) REFERENCES seznam_piva(idSeznam_piva) ON DELETE CASCADE ON UPDATE NO ACTION;
-ALTER TABLE ocena ADD CONSTRAINT tk_ocena_uporabnik FOREIGN KEY (tk_uporabnik) REFERENCES uporabnik(idUporabnik) ON DELETE CASCADE ON UPDATE NO ACTION;
-ALTER TABLE ocena ADD CONSTRAINT tk_ocena_pivo FOREIGN KEY (tk_pivo) REFERENCES pivo(idPivo) ON DELETE CASCADE ON UPDATE NO ACTION;
 ALTER TABLE pivo ADD CONSTRAINT tk_pivo_pivovarna FOREIGN KEY (tk_pivovarna) REFERENCES pivovarna(idPivovarna) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 
 INSERT INTO uporabnik (ime, priimek, email, slika)
 VALUES  ('Matic', 'Absec', 'absec.matic@gmail.com', 'slika1'),
-        ('Buba', 'Corelli', 'imperia@gmail.com', 'slika2'),
-        ('Jala', 'Brat', 'jala.brat@gmail.com', 'slika3'),
-        ('Alfi', 'Nipič', 'alfi.nipic@gmail.com', 'slika4'),
+        ('David', 'Golež', 'golezdavid@gmail.com', 'slika2'),
+        ('Nik', 'Kac', 'nikkac123@gmail.com', 'slika3'),
+        ('Urban', 'Vizintin', 'urbi.vizintin@gmail.com', 'slika4'),
         ('Saša', 'Lendero', 'sasa.lendero@gmail.com', 'slika5'),
         ('Robert', 'Pešut', 'robert.pesut@gmail.com', 'slika6'),
         ('Tomaž', 'Mihelič', 'tomaz.mihelic@gmail.com', 'slika7'),
@@ -163,66 +154,39 @@ VALUES  (1, 'Union Nefiltrirano', 'alkoholno', 'nefiltrirano', 3, 3, 4, 87267, '
         (7, 'Oil Warz', 'alkoholno', 'temno', 5, 3, 3, 26384, 'https://kupilokalno.si/wp-content/uploads/2020/04/oil_warz-600x600-1.png'),
         (7, 'Franci', 'alkoholno', 'svetlo', 4, 4, 3, 28464, 'https://1.bp.blogspot.com/-B9dAZfmHkKQ/W8M8vxsWxEI/AAAAAAAALbA/uzIQZA3AHHsqAqqv-sIQ9TCtil7FNXfLgCLcBGAs/s1600/Green%2BGold%2BFranci.JPG');
 
-INSERT INTO ocena (tk_pivo, tk_uporabnik, vrednost)
-VALUES  (2, 4, 1),
-        (1, 3, 2),
-        (10, 5, 4),
-        (21, 2, 5),
-        (4, 1, 3),
-        (7, 10, 4),
-        (15, 6, 2),
-        (6, 7, 4),
-        (14, 9, 3),
-        (22, 8, 5),
-        (19, 2, 2),
-        (3, 5, 5),
-        (36, 10, 5),
-        (24, 3, 3),
-        (46, 7, 4),
-        (30, 1, 2),
-        (5, 9, 3),
-        (20, 4, 5),
-        (41, 6, 3),
-        (42, 8, 3),
-        (8, 3, 1),
-        (16, 2, 5),
-        (37, 6, 1),
-        (33, 4, 2),
-        (27, 9, 4),
-        (9, 10, 3);
 
-INSERT INTO priljubljeno_pivo (tk_pivo, tk_seznam_piva)
-VALUES  (2, 1),
-        (34, 1),
-        (21, 1),
-        (44, 2),
-        (16, 2),
-        (5, 2),
-        (33, 3),
-        (10, 3),
-        (27, 3),
-        (48, 8),
-        (3, 2),
-        (25, 6),
-        (30, 4),
-        (9, 3),
-        (11, 10),
-        (25, 7),
-        (41, 5),
-        (6, 8),
-        (38, 2),
-        (24, 4),
-        (17, 9),
-        (4, 1),
-        (27, 5),
-        (1, 3),
-        (49, 7),
-        (36, 8),
-        (20, 10),
-        (10, 5),
-        (17, 2),
-        (29, 3),
-        (10, 4),
-        (38, 1),
-        (27, 6),
-        (1, 3);
+INSERT INTO priljubljeno_pivo (tk_pivo, tk_seznam_piva, ocena)
+VALUES  (2, 1,1),
+        (34, 1,3),
+        (21, 1,4),
+        (44, 2,2),
+        (16, 2,1),
+        (5, 2,5),
+        (33, 3,4),
+        (10, 3,2),
+        (27, 3,4),
+        (48, 8,3),
+        (3, 2,4),
+        (25, 6,1),
+        (30, 4,4),
+        (9, 3,5),
+        (11, 10,4),
+        (25, 7,2),
+        (41, 5,4),
+        (6, 8,1),
+        (38, 2,2),
+        (24, 4,1),
+        (17, 9,4),
+        (4, 1,2),
+        (27, 5,5),
+        (1, 3,4),
+        (49, 7,2),
+        (36, 8,4),
+        (20, 10,1),
+        (10, 5,3),
+        (17, 2,4),
+        (29, 3,1),
+        (10, 4,4),
+        (38, 1,5),
+        (27, 6,4),
+        (1, 3,3);
