@@ -58,7 +58,7 @@ INSERT INTO uporabnik (ime, priimek, email, slika)
 VALUES  ('Matic', 'Absec', 'absec.matic@gmail.com', 'slika1'),
         ('David', 'Golež', 'golezdavid@gmail.com', 'slika2'),
         ('Nik', 'Kac', 'nikkac123@gmail.com', 'slika3'),
-        ('Urban', 'Vizintin', 'urbi.vizintin@gmail.com', 'slika4'),
+        ('Urban', 'Vižintin', 'urbi.vizintin@gmail.com', 'slika4'),
         ('Saša', 'Lendero', 'sasa.lendero@gmail.com', 'slika5'),
         ('Robert', 'Pešut', 'robert.pesut@gmail.com', 'slika6'),
         ('Tomaž', 'Mihelič', 'tomaz.mihelic@gmail.com', 'slika7'),
