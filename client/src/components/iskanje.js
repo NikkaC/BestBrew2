@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { Component, useState, useEffect } from "react";
 import { Card, Button, Container, ListGroup, CardGroup, Form } from "react-bootstrap";
+import { ReactDOM } from "react";
 import mojaPiva from './mojaPiva'
+import Modal from "./modal";
 import '../App.css'
 import '../styles/iskanje.css';
 import 'mdbreact/dist/css/mdb.css'
 import axios from 'axios';
 import { motion } from 'framer-motion/dist/framer-motion';
 var Barcode = require('react-barcode');
+
 
 
 /*
@@ -63,11 +66,20 @@ function SearchChange({ piva }) {
 
   const [mojaPiva, setMojaPiva] = useState([]);
 
-
+  const [prikaz, setPrikaz] = useState(false);
 
   const handleChange = (event) => {
     setSearch(event.target.value.toLocaleLowerCase());
   };
+
+  // prikaz oziroma skrivanje modala
+  const prikazi = () => {
+    setPrikaz(true);
+  }
+
+  const skrij = () => {
+    setPrikaz(false);
+  }
 
   console.log(mojaPiva);
 
@@ -84,6 +96,12 @@ function SearchChange({ piva }) {
             <input class="form__input" type='text' placeholder="Vnesi ime piva" onChange={handleChange} />
             <label for="name" class="form__label">Rezultati iskanja</label>
           </div>
+        </center>
+          <Modal show = {prikaz} handleClose = {skrij}>
+            <h1>Iskanje ~ Barcode</h1>
+          </Modal>
+        <center>
+          <Button size="lg" onClick={prikazi} variant="secondary">Skeniraj kodo</Button>
         </center>
 
 
