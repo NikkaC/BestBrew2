@@ -79,6 +79,7 @@ VALUES  ('Union', 46.06004, 14.49846),
 INSERT INTO seznam_piva (tk_uporabnik, naziv)
 VALUES  (1, 'Lepa piva'),
         (1, 'Grda piva'),
+        (2, 'drink beer dont be Queer'),
         (3, 'Naj piva'),
         (4, 'Moji top piri'),
         (5, 'Piri da se ga odpipa'),
