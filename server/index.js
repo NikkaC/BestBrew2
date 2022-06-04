@@ -191,7 +191,16 @@ app.get("/posodobiOceno/:event/:idPriljubljenaPiva", async (req, res) => {
   }
 });
 
-
+// -------------Shrani seznam piv, ki ga uporabnik kreira ----
+app.get('/seznamIme/:idUporabnik', async (req, res) => {
+    const uporabnikID = parseInt(req.params.idUporabnik);
+    try {
+        const vsiSeznami = await pool.query("SELECT * FROM seznam_piva WHERE tk_uporabnik = $1;", [uporabnikID]);
+        res.json(vsiSeznami.rows)
+    } catch (err) {
+      console.error(err);
+    }
+});
 
 
 

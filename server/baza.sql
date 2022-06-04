@@ -1,9 +1,9 @@
 DROP VIEW IF EXISTS seznami;
 DROP TABLE IF EXISTS priljubljeno_pivo;
 DROP TABLE IF EXISTS seznam_piva;
+DROP TABLE IF EXISTS pivo;
 DROP TABLE IF EXISTS pivovarna;
 DROP TABLE IF EXISTS uporabnik;
-DROP TABLE IF EXISTS pivo;
 
 
 
@@ -38,7 +38,8 @@ CREATE TABLE pivovarna (
 
 CREATE TABLE seznam_piva (
 	idSeznam_piva serial PRIMARY KEY NOT NULL,
-    tk_uporabnik INT NOT NULL
+    tk_uporabnik INT NOT NULL,
+    naziv VARCHAR(100)
 );
 
 CREATE TABLE priljubljeno_pivo (
@@ -75,17 +76,17 @@ VALUES  ('Union', 46.06004, 14.49846),
         ('Guinness', 53.34357, -6.28704),
         ('Green Golden Brewing', 46.2662, 15.1149);
 
-INSERT INTO seznam_piva (tk_uporabnik)
-VALUES  (1),
-        (1),
-        (3),
-        (4),
-        (5),
-        (6),
-        (7),
-        (8),
-        (9),
-        (10);
+INSERT INTO seznam_piva (tk_uporabnik, naziv)
+VALUES  (1, 'Lepa piva'),
+        (1, 'Grda piva'),
+        (3, 'Naj piva'),
+        (4, 'Moji top piri'),
+        (5, 'Piri da se ga odpipa'),
+        (6, 'Pir te vedno pomir'),
+        (7, 'Pivce za živce'),
+        (8, 'Pivo kul'),
+        (9, 'Beerpong'),
+        (10, 'Nice beer');
 
 INSERT INTO pivo (tk_pivovarna, naziv, alkohol, vrsta, pena, okus, vonj, crtna_koda, imgurl)
 VALUES  (1, 'Union Nefiltrirano', 'alkoholno', 'nefiltrirano', 3, 3, 4, 87267, 'https://cdn1.interspar.at/cachableservlets/articleImage.dam/si/549175/dt_sub.jpg'),
