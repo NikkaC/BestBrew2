@@ -21,6 +21,7 @@
     "netlify-lambda": "^2.0.15",
     "nodemon": "^2.0.16",
     "pg": "^8.7.3",
+    "reactjs-popup": "^2.0.5",
     "serverless-http": "^3.0.1"
   }
 }

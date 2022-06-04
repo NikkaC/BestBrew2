@@ -134,7 +134,6 @@ app.post("/shraniUporabnika", async (req, res) => {
       vsiUporabniki.rows.forEach((uporabnik) => {
         if(ime == uporabnik.ime && priimek == uporabnik.priimek && email == uporabnik.email) {
           // uporabnik je že v bazi, funkcija vrne že obstoječega uporabnika
-          console.log("Uporabnik je ze obstajal v podatkovni bazi.");
           res.json(uporabnik);
           seNeObstaja = false;
         }
@@ -142,7 +141,6 @@ app.post("/shraniUporabnika", async (req, res) => {
 
       // uporabnik v bazi še ne obstaja, uporabnika zapišemo v bazo in vrnemo njegov id
       if(seNeObstaja) {
-        console.log("Uporabnik se ni obstajal v podatkovni bazi.");
         pool.query('INSERT INTO uporabnik (ime, priimek, email) VALUES ($1, $2, $3);', [ime, priimek, email], (error, response) => {
           if(error) {
             throw error;

@@ -97,7 +97,6 @@ export function LogIn2({ imageDef, imeDef, buttonDef, func }) {
             crossDomain: true,
             context: document.body,
             success: function (data, status) {
-                console.log("Ajax poizvedba deluje!");
                 sessionStorage.setItem("prijavljenUporabnik", JSON.stringify(data));
             },
             error: function(xhr, status, error) {
