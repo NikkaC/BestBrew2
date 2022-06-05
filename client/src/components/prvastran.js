@@ -67,6 +67,7 @@ function PrvaStran() {
   </Popup>
       <br/>
       {console.log(funFacts)}
+      <br/>
                 <Image src={pivo}></Image>
               </Card.Body>
             </Card>
