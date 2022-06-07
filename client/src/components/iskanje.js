@@ -129,7 +129,7 @@ function SearchChange({ piva }) {
             <h1>Iskanje ~ Barcode</h1>
           </Modal>
         <center>
-          <Button size="lg" onClick={prikazi} variant="secondary">Skeniraj kodo</Button>
+          <Button size="lg" onClick={prikazi} handleClose={skrij} variant="secondary">Skeniraj kodo</Button>
         </center>
 
 
