@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Card, Container, ListGroup, Button,CardGroup } from "react-bootstrap";
 import ReactStars from 'react-stars'
 import axios from 'axios';
-
+import $ from 'jquery';
 
 
 const ratingChanged = (event,idPriljubljenaPiva) => {
@@ -16,7 +16,21 @@ const ratingChanged = (event,idPriljubljenaPiva) => {
         });
 }
 
-
+const kreirajSeznam = (podatki) => {
+    return $.ajax({
+        url: "http://localhost:5001/dodajSeznam",
+          type: 'POST',
+          data: JSON.parse(JSON.stringify(podatki)),
+          crossDomain: true,
+          context: document.body,
+          success: function (data, status) {
+              console.log('Seznam je bil uspešno kreiran. Lahko pričnete z dodajanjem piv v seznam.');
+          },
+          error: function(xhr, status, error) {
+              console.log(error);
+          }
+    });
+}
 
 export default class SeznamPriljubljenihPiv extends React.Component {
   
@@ -62,20 +76,31 @@ export default class SeznamPriljubljenihPiv extends React.Component {
   })});
   }
 
+  dodajanjeSeznama() {
+    let pridobljenUporabnik = JSON.parse(sessionStorage.getItem("prijavljenUporabnik"));
+
+    let podatki = { uporabnik: pridobljenUporabnik.iduporabnik, ime: $('#imeSeznama').val()};
+
+    if(podatki.ime != "") {
+      kreirajSeznam(podatki);
+    } else {
+      alert('Vnestite ime seznama!')
+    }
+
+    console.log('Kreiranje seznama:');
+    console.log(podatki);
+  }
  
   render() {
-    console.log('Piva.');
-    console.log(this.state.piva);
-    console.log(this.state.uniques);
-    console.log(this.state.imena);
+    
 
     return (
       <>
         <Container>
           <center>
             <div class="form__group">
-              <input class="form__input" type='text' placeholder='Vnesite ime seznama'></input>
-              <Button size='lg' variant='secondary'>Dodaj nov seznam</Button>
+              <input id="imeSeznama" class="form__input" type='text' placeholder='Vnesite ime seznama'></input>
+              <Button size='lg' variant='secondary' onClick={() => {this.dodajanjeSeznama()}}>Dodaj nov seznam</Button>
             </div>
           </center>
           <CardGroup>
