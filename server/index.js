@@ -80,11 +80,11 @@ app.get("/VseUporabnike", async (req, res) => {
     console.error(err.message);
   }
 });
-//-----VRAČA ID-je seznamov uporabnika--------------
+//-----VRAČA ID-je ter nazive seznamov uporabnika--------------
 app.get("/seznamiUporabnikov/:idUporabnik", async (req, res) => {
   const id = parseInt(req.params.idUporabnik)
   try {
-    const vsiSeznami = await pool.query("SELECT idSeznam_piva FROM seznam_piva LEFT JOIN uporabnik ON uporabnik.iduporabnik=seznam_piva.tk_uporabnik  WHERE tk_uporabnik=$1;", [id], );
+    const vsiSeznami = await pool.query("SELECT idSeznam_piva, naziv FROM seznam_piva LEFT JOIN uporabnik ON uporabnik.iduporabnik=seznam_piva.tk_uporabnik  WHERE tk_uporabnik=$1;", [id], );
     res.json(vsiSeznami.rows);
   } catch (err) {
     console.error(err.message);
