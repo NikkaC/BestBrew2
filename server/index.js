@@ -191,7 +191,7 @@ app.get("/posodobiOceno/:event/:idPriljubljenaPiva", async (req, res) => {
   }
 });
 
-// -------------Shrani seznam piv, ki ga uporabnik kreira ----
+// ------------- Vrni sezname piv od uporabnika ----
 app.get('/seznamIme/:idUporabnik', async (req, res) => {
     const uporabnikID = parseInt(req.params.idUporabnik);
     try {
@@ -202,7 +202,18 @@ app.get('/seznamIme/:idUporabnik', async (req, res) => {
     }
 });
 
+// ----------- Uporabnik kreira seznam
+app.post('/dodajSeznam', async (req, res) => {
+    try {
+        const {uporabnik, ime} = req.body;
 
+        await pool.query("INSERT INTO seznam_piva (tk_uporabnik, naziv) VALUES ($1, $2);", [uporabnik, ime]);
+
+        res.status(200).send('Seznam je bil uspesno kreiran.');
+    } catch(err) {
+        console.error(err);
+    }
+});
 
 app.listen(5001, () => {
     console.log(`Listening on port ${port}`);
