@@ -154,10 +154,10 @@ function SearchChange({ piva }) {
 
                 <Barcode value={pivo.crtna_koda} />
                 <div className="d-grid">
-                  <DropdownButton  title={"Seznam#"+izbraniSeznam} onSelect={handleSelect}>
+                  <DropdownButton  title={"Dodaj pivo v seznam"} onSelect={handleSelect}>
                   
                     {mojiSeznami.map(seznam =>                  
-                    <Dropdown.Item size="sm" eventKey={seznam.idseznam_piva}>Seznam#{seznam.idseznam_piva}</Dropdown.Item>
+                    <Dropdown.Item size="sm" eventKey={seznam.idseznam_piva}>{seznam.naziv}</Dropdown.Item>
                     
                       )
                     } 
