@@ -60,13 +60,14 @@ export function LogIn2({ imageDef, imeDef, buttonDef, func, nastaviPrikaz }) {
     //const button = user.button
 
 
-
     const signInWithGoogle = () => {
         signInWithPopup(auth, provider).then((results) => {
             const ime = results.user.displayName;
             const email = results.user.email;
-            const img = results.user.photoURL;
+            const img2 = results.user.photoURL;
             localStorage.setItem("email", email)
+
+            console.log("Slika " + img2);
 
             let razdelitev = ime.split(" ");
 
@@ -80,12 +81,14 @@ export function LogIn2({ imageDef, imeDef, buttonDef, func, nastaviPrikaz }) {
                 console.log(results.user);
                 console.log(results.user.refreshToken);
                 setUser(prevUser => {
-                    return ({ ime: prevUser.ime = ime, img: prevUser.img = img, button: prevUser.button = false });
+
+                    return ({ ime: prevUser.ime = ime, img: prevUser.img = img2, button: prevUser.button = false });
                 });
             });
         }).catch((err) => {
             console.log(err);
         });
+
     };
 
     const shraniUporabnika = (podatki) => {
@@ -99,7 +102,7 @@ export function LogIn2({ imageDef, imeDef, buttonDef, func, nastaviPrikaz }) {
             success: function (data, status) {
                 sessionStorage.setItem("prijavljenUporabnik", JSON.stringify(data));
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 console.log(error);
             }
         })
