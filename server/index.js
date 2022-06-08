@@ -215,6 +215,21 @@ app.post('/dodajSeznam', async (req, res) => {
     }
 });
 
+// ------ iskanje piva po črtni kodi
+
+app.get('/pivoScanner/:crtna_koda', async (req, res) => {
+    try {
+      const crtnaKoda = parseInt(req.params.crtna_koda);
+
+      let pivo = await pool.query("SELECT * FROM pivo WHERE pivo.crtna_koda = $1;", [crtnaKoda]);
+
+      res.json(pivo.rows);
+    } catch(err) {
+      console.error(err);
+    }
+
+});
+
 app.listen(5001, () => {
     console.log(`Listening on port ${port}`);
   });
