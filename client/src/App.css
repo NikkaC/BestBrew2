@@ -29,7 +29,7 @@
 }
 
 .marginTopRight {
-  margin-top: 2.5%;
+  margin-top: 6%;
   margin-right: 5%;
 }
 
@@ -44,7 +44,11 @@
 }
 
 .marginTopMojaPiva {
-  margin-top: 4%;
+  margin-top: 6%;
+}
+
+.marginTopIskanje {
+  margin-top: 6%;
 }
 
 .App-link {
