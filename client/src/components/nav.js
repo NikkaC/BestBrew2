@@ -13,11 +13,15 @@ import { LogIn2 } from "./GoogleAuth/firebase";
 
 function NavB({ image, ime, button, dataPull }) {
 
+  const [prikaz, setPrikaz] = React.useState(false);
+
   const pull_data = (data) => {
     console.log(data);
+    setPrikaz(true);
   };
 
-
+  // opcija 1: style={{ visibility: "hidden" }}
+  
   return (
     <Navbar bg="light" expand="lg" fixed='top'>
       <Container>
@@ -26,14 +30,14 @@ function NavB({ image, ime, button, dataPull }) {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link><Link to="/iskanje" className='navText'>Iskanje piv</Link>  </Nav.Link>
-            <Nav.Link><Link to="/mojepive" className='navText'>Moja piva</Link>    </Nav.Link>
+            { prikaz && <Nav.Link><Link to="/mojepive" className='navText'>Moja piva</Link>    </Nav.Link> }
             <Nav.Link><Link to="/map" className='navText'>Zemljevid</Link>    </Nav.Link>
             <Nav.Link><Link to="/onas" className='navText'>O nas</Link>    </Nav.Link>
 
           </Nav>
         </Navbar.Collapse>
         <Nav>
-          <LogIn2 imageDef={image} imeDef={ime} buttonDef={button} func={pull_data} />
+          <LogIn2 imageDef={image} imeDef={ime} buttonDef={button} func={pull_data} nastaviPrikaz={setPrikaz}/>
         </Nav>
       </Container>
     </Navbar>

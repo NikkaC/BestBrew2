@@ -38,7 +38,7 @@ export const signInWithGoogle2 = () => signInWithPopup(auth, provider);
 
 
 
-export function LogIn2({ imageDef, imeDef, buttonDef, func }) {
+export function LogIn2({ imageDef, imeDef, buttonDef, func, nastaviPrikaz }) {
 
     /*
     const [user, setUser] = useState(() => {
@@ -114,7 +114,7 @@ export function LogIn2({ imageDef, imeDef, buttonDef, func }) {
                 })
             });
 
-
+            nastaviPrikaz(false);
 
         }).catch((err) => {
             console.log(err);
@@ -130,7 +130,7 @@ export function LogIn2({ imageDef, imeDef, buttonDef, func }) {
 
 
 
-
+    // odjava uporabnika
     const cliclkHandler = () => {
         signOutWithGoogle();
         setModalShow(prevModalShow => { return ({ showModal: true }) });
